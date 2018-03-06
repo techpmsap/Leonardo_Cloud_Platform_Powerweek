@@ -1,0 +1,1395 @@
+{
+	"variables": [],
+	"info": {
+		"name": "wdiot1 iotae apis",
+		"_postman_id": "f70b9620-dbe3-a79d-4e04-cb55fcb83afc",
+		"description": "IoT Application Enablement APIs ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "01 Thing Configuration",
+			"description": "",
+			"item": [
+				{
+					"name": "Read configuration",
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/appcore-conf/Configuration('{{packagePrefix}}.{{packageId}}')",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Read Thing Type",
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/appiot-mds/Configuration/ThingTypes('{{packagePrefix}}.{{packageId}}:greenhouse_{{number}}')",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Read Property Set Type",
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/appiot-mds/Configuration/PropertySetTypes('{{packagePrefix}}.{{packageId}}:status_capability_{{number}}')",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "02 Thing Onboarding",
+			"description": "",
+			"item": [
+				{
+					"name": "Fetch csrf token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"postman.setEnvironmentVariable(\"x-csrf-token\", responseHeaders[\"x-csrf-token\"]);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/appiot-mds/Things",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "x-csrf-token",
+								"value": "Fetch",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create Location",
+					"request": {
+						"url": "https://iotae-weather-station.{{endpoint}}/location/Locations",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "x-csrf-token",
+								"value": "{{x-csrf-token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"basicData\": {\r\n      \"tenant\": \"6b569f4e-be54-4313-9865-7374c2be41d2\",\r\n      \"etag\":1\r\n    },\r\n    \"locationData\": {\r\n        \"streetName\": \"In der Aue\",\r\n        \"houseNumber\": \"18\",\r\n        \"cityName\": \"Heidelberg\",\r\n        \"postalCode\": \"69118\",\r\n        \"country\": \"DE\",\r\n        \"longitude\": 8.763612,\r\n        \"latitude\": 49.413137\r\n    }\r\n\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Locations",
+					"request": {
+						"url": {
+							"raw": "https://{{tenant}}.{{endpoint}}/location/Locations?$top=10000000",
+							"protocol": "https",
+							"host": [
+								"{{tenant}}",
+								"{{endpoint}}"
+							],
+							"path": [
+								"location",
+								"Locations"
+							],
+							"query": [
+								{
+									"key": "$top",
+									"value": "10000000",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Read the created thing",
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/appiot-mds/Things('{{yourthingId}}')",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update Thing (incl. location)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"if (responseCode.code === 201){",
+									"    var response = responseHeaders[\"Location\"];",
+									"    postman.setEnvironmentVariable(\"yourthingId\", response.slice(-34,-2));",
+									"}",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/appiot-mds/Things",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "x-csrf-token",
+								"value": "{{x-csrf-token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"_externalId\": \"XXX_Thing\",\r\n \"_name\": \"XXX_Thing\",\r\n \"_description\": {\r\n    \"en\": \"XXX_Thing\"\r\n },\r\n \"_thingType\": [\r\n \"{{packagePrefix}}.{{packageId}}:greenhouse_{{number}}\"\r\n ],\r\n \"_location\": \"{{locationId}}\",\r\n \"_objectGroup\": \"{{object_group_id}}\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Read Metadata for a Thing",
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/appiot-mds/Things('{{yourthingId}}')/Configuration",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Read Thing as Composite(Optional)",
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/appiot-mds/Composite/Things('{{yourthingId}}')",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Read Snapshot data for your thing",
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/appiot-mds/v2/Snapshot(thingId='{{yourthingId}}',fromTime='',toTime='',dataCategory='')",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "03 Timeseries Data Management",
+			"description": "",
+			"item": [
+				{
+					"name": "Fetch csrf token ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"postman.setEnvironmentVariable(\"x-csrf-token\", responseHeaders[\"X-Csrf-Token\"]);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/appiot-mds/Things",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "x-csrf-token",
+								"value": "Fetch",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create Timeseries Data - Pressure",
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/appiot-mds/Things('{{yourthingId}}')/{{packagePrefix}}.{{packageId}}:greenhouse_{{number}}/Fill_Level_Milk_{{number}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "x-csrf-token",
+								"value": "{{x-csrf-token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"value\": [{\r\n        \"_time\": \"2017-07-19T14:44:27.047Z\",\r\n        \"Level\": 100\r\n    }, {\r\n        \"_time\": \"2017-07-19T15:19:27.047Z\",\r\n        \"Level\": 100\r\n    }, {\r\n        \"_time\": \"2017-07-19T15:54:27.047Z\",\r\n        \"Level\": 100\r\n    }, {\r\n        \"_time\": \"2017-07-19T16:29:27.047Z\",\r\n        \"Level\": 99\r\n    }, {\r\n        \"_time\": \"2017-07-19T17:04:27.047Z\",\r\n        \"Level\": 99\r\n    }, {\r\n        \"_time\": \"2017-07-19T17:39:27.047Z\",\r\n        \"Level\": 98\r\n    }, {\r\n        \"_time\": \"2017-07-19T18:14:27.047Z\",\r\n        \"Level\": 98\r\n    }, {\r\n        \"_time\": \"2017-07-19T18:49:27.047Z\",\r\n        \"Level\": 98\r\n    }, {\r\n        \"_time\": \"2017-07-19T19:24:27.047Z\",\r\n        \"Level\": 98\r\n    }, {\r\n        \"_time\": \"2017-07-19T19:59:27.047Z\",\r\n        \"Level\": 97\r\n    }, {\r\n        \"_time\": \"2017-07-19T20:34:27.047Z\",\r\n        \"Level\": 97\r\n    }, {\r\n        \"_time\": \"2017-07-19T21:09:27.047Z\",\r\n        \"Level\": 96\r\n    }, {\r\n        \"_time\": \"2017-07-19T21:44:27.047Z\",\r\n        \"Level\": 96\r\n    }, {\r\n        \"_time\": \"2017-07-19T22:19:27.047Z\",\r\n        \"Level\": 95\r\n    }, {\r\n        \"_time\": \"2017-07-19T22:54:27.047Z\",\r\n        \"Level\": 94\r\n    }, {\r\n        \"_time\": \"2017-07-19T23:29:27.047Z\",\r\n        \"Level\": 94\r\n    }, {\r\n        \"_time\": \"2017-07-20T00:04:27.047Z\",\r\n        \"Level\": 93\r\n    }, {\r\n        \"_time\": \"2017-07-20T00:39:27.047Z\",\r\n        \"Level\": 92\r\n    }, {\r\n        \"_time\": \"2017-07-20T01:14:27.047Z\",\r\n        \"Level\": 92\r\n    }, {\r\n        \"_time\": \"2017-07-20T01:49:27.047Z\",\r\n        \"Level\": 91\r\n    }, {\r\n        \"_time\": \"2017-07-20T02:24:27.047Z\",\r\n        \"Level\": 91\r\n    }, {\r\n        \"_time\": \"2017-07-20T02:59:27.047Z\",\r\n        \"Level\": 90\r\n    }, {\r\n        \"_time\": \"2017-07-20T03:34:27.047Z\",\r\n        \"Level\": 90\r\n    }, {\r\n        \"_time\": \"2017-07-20T04:09:27.047Z\",\r\n        \"Level\": 90\r\n    }, {\r\n        \"_time\": \"2017-07-20T04:44:27.047Z\",\r\n        \"Level\": 89\r\n    }, {\r\n        \"_time\": \"2017-07-20T05:19:27.047Z\",\r\n        \"Level\": 88\r\n    }, {\r\n        \"_time\": \"2017-07-20T05:54:27.047Z\",\r\n        \"Level\": 87\r\n    }, {\r\n        \"_time\": \"2017-07-20T06:29:27.047Z\",\r\n        \"Level\": 87\r\n    }, {\r\n        \"_time\": \"2017-07-20T07:04:27.047Z\",\r\n        \"Level\": 87\r\n    }, {\r\n        \"_time\": \"2017-07-20T07:39:27.047Z\",\r\n        \"Level\": 86\r\n    }, {\r\n        \"_time\": \"2017-07-20T08:14:27.047Z\",\r\n        \"Level\": 86\r\n    }, {\r\n        \"_time\": \"2017-07-20T08:49:27.047Z\",\r\n        \"Level\": 85\r\n    }, {\r\n        \"_time\": \"2017-07-20T09:24:27.047Z\",\r\n        \"Level\": 85\r\n    }, {\r\n        \"_time\": \"2017-07-20T09:59:27.047Z\",\r\n        \"Level\": 85\r\n    }, {\r\n        \"_time\": \"2017-07-20T10:34:27.047Z\",\r\n        \"Level\": 85\r\n    }, {\r\n        \"_time\": \"2017-07-20T11:09:27.047Z\",\r\n        \"Level\": 85\r\n    }, {\r\n        \"_time\": \"2017-07-20T11:44:27.047Z\",\r\n        \"Level\": 85\r\n    }, {\r\n        \"_time\": \"2017-07-20T12:19:27.047Z\",\r\n        \"Level\": 85\r\n    }, {\r\n        \"_time\": \"2017-07-20T12:54:27.047Z\",\r\n        \"Level\": 85\r\n    }, {\r\n        \"_time\": \"2017-07-20T13:29:27.047Z\",\r\n        \"Level\": 84\r\n    }, {\r\n        \"_time\": \"2017-07-20T14:04:27.047Z\",\r\n        \"Level\": 83\r\n    }, {\r\n        \"_time\": \"2017-07-20T14:39:27.047Z\",\r\n        \"Level\": 83\r\n    }, {\r\n        \"_time\": \"2017-07-20T15:14:27.047Z\",\r\n        \"Level\": 83\r\n    }, {\r\n        \"_time\": \"2017-07-20T15:49:27.047Z\",\r\n        \"Level\": 83\r\n    }, {\r\n        \"_time\": \"2017-07-20T16:24:27.047Z\",\r\n        \"Level\": 83\r\n    }, {\r\n        \"_time\": \"2017-07-20T16:59:27.047Z\",\r\n        \"Level\": 83\r\n    }, {\r\n        \"_time\": \"2017-07-20T17:34:27.047Z\",\r\n        \"Level\": 83\r\n    }, {\r\n        \"_time\": \"2017-07-20T18:09:27.047Z\",\r\n        \"Level\": 83\r\n    }, {\r\n        \"_time\": \"2017-07-20T18:44:27.047Z\",\r\n        \"Level\": 83\r\n    }, {\r\n        \"_time\": \"2017-07-20T19:19:27.047Z\",\r\n        \"Level\": 83\r\n    }, {\r\n        \"_time\": \"2017-07-20T19:54:27.047Z\",\r\n        \"Level\": 83\r\n    }, {\r\n        \"_time\": \"2017-07-20T20:29:27.047Z\",\r\n        \"Level\": 83\r\n    }, {\r\n        \"_time\": \"2017-07-20T21:04:27.047Z\",\r\n        \"Level\": 83\r\n    }, {\r\n        \"_time\": \"2017-07-20T21:39:27.047Z\",\r\n        \"Level\": 82\r\n    }, {\r\n        \"_time\": \"2017-07-20T22:14:27.047Z\",\r\n        \"Level\": 82\r\n    }, {\r\n        \"_time\": \"2017-07-20T22:49:27.047Z\",\r\n        \"Level\": 81\r\n    }, {\r\n        \"_time\": \"2017-07-20T23:24:27.047Z\",\r\n        \"Level\": 81\r\n    }, {\r\n        \"_time\": \"2017-07-20T23:59:27.047Z\",\r\n        \"Level\": 80\r\n    }, {\r\n        \"_time\": \"2017-07-21T00:34:27.047Z\",\r\n        \"Level\": 80\r\n    }, {\r\n        \"_time\": \"2017-07-21T01:09:27.047Z\",\r\n        \"Level\": 79\r\n    }, {\r\n        \"_time\": \"2017-07-21T01:44:27.047Z\",\r\n        \"Level\": 78\r\n    }, {\r\n        \"_time\": \"2017-07-21T02:19:27.047Z\",\r\n        \"Level\": 78\r\n    }, {\r\n        \"_time\": \"2017-07-21T02:54:27.047Z\",\r\n        \"Level\": 78\r\n    }, {\r\n        \"_time\": \"2017-07-21T03:29:27.047Z\",\r\n        \"Level\": 78\r\n    }, {\r\n        \"_time\": \"2017-07-21T04:04:27.047Z\",\r\n        \"Level\": 78\r\n    }, {\r\n        \"_time\": \"2017-07-21T04:39:27.047Z\",\r\n        \"Level\": 77\r\n    }, {\r\n        \"_time\": \"2017-07-21T05:14:27.047Z\",\r\n        \"Level\": 76\r\n    }, {\r\n        \"_time\": \"2017-07-21T05:49:27.047Z\",\r\n        \"Level\": 75\r\n    }, {\r\n        \"_time\": \"2017-07-21T06:24:27.047Z\",\r\n        \"Level\": 75\r\n    }, {\r\n        \"_time\": \"2017-07-21T06:59:27.047Z\",\r\n        \"Level\": 75\r\n    }, {\r\n        \"_time\": \"2017-07-21T07:34:27.047Z\",\r\n        \"Level\": 75\r\n    }, {\r\n        \"_time\": \"2017-07-21T08:09:27.047Z\",\r\n        \"Level\": 75\r\n    }, {\r\n        \"_time\": \"2017-07-21T08:44:27.047Z\",\r\n        \"Level\": 75\r\n    }, {\r\n        \"_time\": \"2017-07-21T09:19:27.047Z\",\r\n        \"Level\": 74\r\n    }, {\r\n        \"_time\": \"2017-07-21T09:54:27.047Z\",\r\n        \"Level\": 73\r\n    }, {\r\n        \"_time\": \"2017-07-21T10:29:27.047Z\",\r\n        \"Level\": 73\r\n    }, {\r\n        \"_time\": \"2017-07-21T11:04:27.047Z\",\r\n        \"Level\": 73\r\n    }, {\r\n        \"_time\": \"2017-07-21T11:39:27.047Z\",\r\n        \"Level\": 73\r\n    }, {\r\n        \"_time\": \"2017-07-21T12:14:27.047Z\",\r\n        \"Level\": 73\r\n    }, {\r\n        \"_time\": \"2017-07-21T12:49:27.047Z\",\r\n        \"Level\": 73\r\n    }, {\r\n        \"_time\": \"2017-07-21T13:24:27.047Z\",\r\n        \"Level\": 72\r\n    }, {\r\n        \"_time\": \"2017-07-21T13:59:27.047Z\",\r\n        \"Level\": 71\r\n    }, {\r\n        \"_time\": \"2017-07-21T14:34:27.047Z\",\r\n        \"Level\": 71\r\n    }, {\r\n        \"_time\": \"2017-07-21T15:09:27.047Z\",\r\n        \"Level\": 71\r\n    }, {\r\n        \"_time\": \"2017-07-21T15:44:27.047Z\",\r\n        \"Level\": 71\r\n    }, {\r\n        \"_time\": \"2017-07-21T16:19:27.047Z\",\r\n        \"Level\": 71\r\n    }, {\r\n        \"_time\": \"2017-07-21T16:54:27.047Z\",\r\n        \"Level\": 70\r\n    }, {\r\n        \"_time\": \"2017-07-21T17:29:27.047Z\",\r\n        \"Level\": 69\r\n    }, {\r\n        \"_time\": \"2017-07-21T18:04:27.047Z\",\r\n        \"Level\": 69\r\n    }, {\r\n        \"_time\": \"2017-07-21T18:39:27.047Z\",\r\n        \"Level\": 69\r\n    }, {\r\n        \"_time\": \"2017-07-21T19:14:27.047Z\",\r\n        \"Level\": 69\r\n    }, {\r\n        \"_time\": \"2017-07-21T19:49:27.047Z\",\r\n        \"Level\": 69\r\n    }, {\r\n        \"_time\": \"2017-07-21T20:24:27.047Z\",\r\n        \"Level\": 68\r\n    }, {\r\n        \"_time\": \"2017-07-21T20:59:27.047Z\",\r\n        \"Level\": 67\r\n    }, {\r\n        \"_time\": \"2017-07-21T21:34:27.047Z\",\r\n        \"Level\": 66\r\n    }, {\r\n        \"_time\": \"2017-07-21T22:09:27.047Z\",\r\n        \"Level\": 66\r\n    }, {\r\n        \"_time\": \"2017-07-21T22:44:27.047Z\",\r\n        \"Level\": 66\r\n    }, {\r\n        \"_time\": \"2017-07-21T23:19:27.047Z\",\r\n        \"Level\": 66\r\n    }, {\r\n        \"_time\": \"2017-07-21T23:54:27.047Z\",\r\n        \"Level\": 65\r\n    }, {\r\n        \"_time\": \"2017-07-22T00:29:27.047Z\",\r\n        \"Level\": 65\r\n    }, {\r\n        \"_time\": \"2017-07-22T01:04:27.047Z\",\r\n        \"Level\": 64\r\n    }, {\r\n        \"_time\": \"2017-07-22T01:39:27.047Z\",\r\n        \"Level\": 63\r\n    }, {\r\n        \"_time\": \"2017-07-22T02:14:27.047Z\",\r\n        \"Level\": 62\r\n    }, {\r\n        \"_time\": \"2017-07-22T02:49:27.047Z\",\r\n        \"Level\": 62\r\n    }, {\r\n        \"_time\": \"2017-07-22T03:24:27.047Z\",\r\n        \"Level\": 61\r\n    }, {\r\n        \"_time\": \"2017-07-22T03:59:27.047Z\",\r\n        \"Level\": 61\r\n    }, {\r\n        \"_time\": \"2017-07-22T04:34:27.047Z\",\r\n        \"Level\": 61\r\n    }, {\r\n        \"_time\": \"2017-07-22T05:09:27.047Z\",\r\n        \"Level\": 61\r\n    }, {\r\n        \"_time\": \"2017-07-22T05:44:27.047Z\",\r\n        \"Level\": 61\r\n    }, {\r\n        \"_time\": \"2017-07-22T06:19:27.047Z\",\r\n        \"Level\": 60\r\n    }, {\r\n        \"_time\": \"2017-07-22T06:54:27.047Z\",\r\n        \"Level\": 60\r\n    }, {\r\n        \"_time\": \"2017-07-22T07:29:27.047Z\",\r\n        \"Level\": 60\r\n    }, {\r\n        \"_time\": \"2017-07-22T08:04:27.047Z\",\r\n        \"Level\": 60\r\n    }, {\r\n        \"_time\": \"2017-07-22T08:39:27.047Z\",\r\n        \"Level\": 60\r\n    }, {\r\n        \"_time\": \"2017-07-22T09:14:27.047Z\",\r\n        \"Level\": 60\r\n    }, {\r\n        \"_time\": \"2017-07-22T09:49:27.047Z\",\r\n        \"Level\": 60\r\n    }, {\r\n        \"_time\": \"2017-07-22T10:24:27.047Z\",\r\n        \"Level\": 60\r\n    }, {\r\n        \"_time\": \"2017-07-22T10:59:27.047Z\",\r\n        \"Level\": 59\r\n    }, {\r\n        \"_time\": \"2017-07-22T11:34:27.047Z\",\r\n        \"Level\": 59\r\n    }, {\r\n        \"_time\": \"2017-07-22T12:09:27.047Z\",\r\n        \"Level\": 59\r\n    }, {\r\n        \"_time\": \"2017-07-22T12:44:27.047Z\",\r\n        \"Level\": 59\r\n    }, {\r\n        \"_time\": \"2017-07-22T13:19:27.047Z\",\r\n        \"Level\": 59\r\n    }, {\r\n        \"_time\": \"2017-07-22T13:54:27.047Z\",\r\n        \"Level\": 58\r\n    }, {\r\n        \"_time\": \"2017-07-22T14:29:27.047Z\",\r\n        \"Level\": 58\r\n    }, {\r\n        \"_time\": \"2017-07-22T15:04:27.047Z\",\r\n        \"Level\": 57\r\n    }, {\r\n        \"_time\": \"2017-07-22T15:39:27.047Z\",\r\n        \"Level\": 57\r\n    }, {\r\n        \"_time\": \"2017-07-22T16:14:27.047Z\",\r\n        \"Level\": 56\r\n    }, {\r\n        \"_time\": \"2017-07-22T16:49:27.047Z\",\r\n        \"Level\": 56\r\n    }, {\r\n        \"_time\": \"2017-07-22T17:24:27.047Z\",\r\n        \"Level\": 56\r\n    }, {\r\n        \"_time\": \"2017-07-22T17:59:27.047Z\",\r\n        \"Level\": 55\r\n    }, {\r\n        \"_time\": \"2017-07-22T18:34:27.047Z\",\r\n        \"Level\": 55\r\n    }, {\r\n        \"_time\": \"2017-07-22T19:09:27.047Z\",\r\n        \"Level\": 55\r\n    }, {\r\n        \"_time\": \"2017-07-22T19:44:27.047Z\",\r\n        \"Level\": 55\r\n    }, {\r\n        \"_time\": \"2017-07-22T20:19:27.047Z\",\r\n        \"Level\": 54\r\n    }, {\r\n        \"_time\": \"2017-07-22T20:54:27.047Z\",\r\n        \"Level\": 53\r\n    }, {\r\n        \"_time\": \"2017-07-22T21:29:27.047Z\",\r\n        \"Level\": 53\r\n    }, {\r\n        \"_time\": \"2017-07-22T22:04:27.047Z\",\r\n        \"Level\": 53\r\n    }, {\r\n        \"_time\": \"2017-07-22T22:39:27.047Z\",\r\n        \"Level\": 52\r\n    }, {\r\n        \"_time\": \"2017-07-22T23:14:27.047Z\",\r\n        \"Level\": 52\r\n    }, {\r\n        \"_time\": \"2017-07-22T23:49:27.047Z\",\r\n        \"Level\": 51\r\n    }, {\r\n        \"_time\": \"2017-07-23T00:24:27.047Z\",\r\n        \"Level\": 50\r\n    }, {\r\n        \"_time\": \"2017-07-23T00:59:27.047Z\",\r\n        \"Level\": 49\r\n    }, {\r\n        \"_time\": \"2017-07-23T01:34:27.047Z\",\r\n        \"Level\": 49\r\n    }, {\r\n        \"_time\": \"2017-07-23T02:09:27.047Z\",\r\n        \"Level\": 48\r\n    }, {\r\n        \"_time\": \"2017-07-23T02:44:27.047Z\",\r\n        \"Level\": 48\r\n    }, {\r\n        \"_time\": \"2017-07-23T03:19:27.047Z\",\r\n        \"Level\": 47\r\n    }, {\r\n        \"_time\": \"2017-07-23T03:54:27.047Z\",\r\n        \"Level\": 47\r\n    }, {\r\n        \"_time\": \"2017-07-23T04:29:27.047Z\",\r\n        \"Level\": 46\r\n    }, {\r\n        \"_time\": \"2017-07-23T05:04:27.047Z\",\r\n        \"Level\": 45\r\n    }, {\r\n        \"_time\": \"2017-07-23T05:39:27.047Z\",\r\n        \"Level\": 45\r\n    }, {\r\n        \"_time\": \"2017-07-23T06:14:27.047Z\",\r\n        \"Level\": 45\r\n    }, {\r\n        \"_time\": \"2017-07-23T06:49:27.047Z\",\r\n        \"Level\": 45\r\n    }, {\r\n        \"_time\": \"2017-07-23T07:24:27.047Z\",\r\n        \"Level\": 45\r\n    }, {\r\n        \"_time\": \"2017-07-23T07:59:27.047Z\",\r\n        \"Level\": 45\r\n    }, {\r\n        \"_time\": \"2017-07-23T08:34:27.047Z\",\r\n        \"Level\": 45\r\n    }, {\r\n        \"_time\": \"2017-07-23T09:09:27.047Z\",\r\n        \"Level\": 45\r\n    }, {\r\n        \"_time\": \"2017-07-23T09:44:27.047Z\",\r\n        \"Level\": 44\r\n    }, {\r\n        \"_time\": \"2017-07-23T10:19:27.047Z\",\r\n        \"Level\": 43\r\n    }, {\r\n        \"_time\": \"2017-07-23T10:54:27.047Z\",\r\n        \"Level\": 43\r\n    }, {\r\n        \"_time\": \"2017-07-23T11:29:27.047Z\",\r\n        \"Level\": 42\r\n    }, {\r\n        \"_time\": \"2017-07-23T12:04:27.047Z\",\r\n        \"Level\": 41\r\n    }, {\r\n        \"_time\": \"2017-07-23T12:39:27.047Z\",\r\n        \"Level\": 41\r\n    }, {\r\n        \"_time\": \"2017-07-23T13:14:27.047Z\",\r\n        \"Level\": 41\r\n    }, {\r\n        \"_time\": \"2017-07-23T13:49:27.047Z\",\r\n        \"Level\": 41\r\n    }, {\r\n        \"_time\": \"2017-07-23T14:24:27.047Z\",\r\n        \"Level\": 40\r\n    }, {\r\n        \"_time\": \"2017-07-23T14:59:27.047Z\",\r\n        \"Level\": 40\r\n    }, {\r\n        \"_time\": \"2017-07-23T15:34:27.047Z\",\r\n        \"Level\": 40\r\n    }, {\r\n        \"_time\": \"2017-07-23T16:09:27.047Z\",\r\n        \"Level\": 39\r\n    }, {\r\n        \"_time\": \"2017-07-23T16:44:27.047Z\",\r\n        \"Level\": 39\r\n    }, {\r\n        \"_time\": \"2017-07-23T17:19:27.047Z\",\r\n        \"Level\": 39\r\n    }, {\r\n        \"_time\": \"2017-07-23T17:54:27.047Z\",\r\n        \"Level\": 39\r\n    }, {\r\n        \"_time\": \"2017-07-23T18:29:27.047Z\",\r\n        \"Level\": 39\r\n    }, {\r\n        \"_time\": \"2017-07-23T19:04:27.047Z\",\r\n        \"Level\": 39\r\n    }, {\r\n        \"_time\": \"2017-07-23T19:39:27.047Z\",\r\n        \"Level\": 39\r\n    }, {\r\n        \"_time\": \"2017-07-23T20:14:27.047Z\",\r\n        \"Level\": 39\r\n    }, {\r\n        \"_time\": \"2017-07-23T20:49:27.047Z\",\r\n        \"Level\": 39\r\n    }, {\r\n        \"_time\": \"2017-07-23T21:24:27.047Z\",\r\n        \"Level\": 39\r\n    }, {\r\n        \"_time\": \"2017-07-23T21:59:27.047Z\",\r\n        \"Level\": 39\r\n    }, {\r\n        \"_time\": \"2017-07-23T22:34:27.047Z\",\r\n        \"Level\": 39\r\n    }, {\r\n        \"_time\": \"2017-07-23T23:09:27.047Z\",\r\n        \"Level\": 39\r\n    }, {\r\n        \"_time\": \"2017-07-23T23:44:27.047Z\",\r\n        \"Level\": 39\r\n    }, {\r\n        \"_time\": \"2017-07-24T00:19:27.047Z\",\r\n        \"Level\": 39\r\n    }, {\r\n        \"_time\": \"2017-07-24T00:54:27.047Z\",\r\n        \"Level\": 39\r\n    }, {\r\n        \"_time\": \"2017-07-24T01:29:27.047Z\",\r\n        \"Level\": 39\r\n    }, {\r\n        \"_time\": \"2017-07-24T02:04:27.047Z\",\r\n        \"Level\": 38\r\n    }, {\r\n        \"_time\": \"2017-07-24T02:39:27.047Z\",\r\n        \"Level\": 37\r\n    }, {\r\n        \"_time\": \"2017-07-24T03:14:27.047Z\",\r\n        \"Level\": 37\r\n    }, {\r\n        \"_time\": \"2017-07-24T03:49:27.047Z\",\r\n        \"Level\": 37\r\n    }, {\r\n        \"_time\": \"2017-07-24T04:24:27.047Z\",\r\n        \"Level\": 36\r\n    }, {\r\n        \"_time\": \"2017-07-24T04:59:27.047Z\",\r\n        \"Level\": 36\r\n    }, {\r\n        \"_time\": \"2017-07-24T05:34:27.047Z\",\r\n        \"Level\": 36\r\n    }, {\r\n        \"_time\": \"2017-07-24T06:09:27.047Z\",\r\n        \"Level\": 36\r\n    }, {\r\n        \"_time\": \"2017-07-24T06:44:27.047Z\",\r\n        \"Level\": 36\r\n    }, {\r\n        \"_time\": \"2017-07-24T07:19:27.047Z\",\r\n        \"Level\": 36\r\n    }, {\r\n        \"_time\": \"2017-07-24T07:54:27.047Z\",\r\n        \"Level\": 35\r\n    }, {\r\n        \"_time\": \"2017-07-24T08:29:27.047Z\",\r\n        \"Level\": 35\r\n    }, {\r\n        \"_time\": \"2017-07-24T09:04:27.047Z\",\r\n        \"Level\": 35\r\n    }, {\r\n        \"_time\": \"2017-07-24T09:39:27.047Z\",\r\n        \"Level\": 35\r\n    }, {\r\n        \"_time\": \"2017-07-24T10:14:27.047Z\",\r\n        \"Level\": 34\r\n    }, {\r\n        \"_time\": \"2017-07-24T10:49:27.047Z\",\r\n        \"Level\": 34\r\n    }, {\r\n        \"_time\": \"2017-07-24T11:24:27.047Z\",\r\n        \"Level\": 33\r\n    }, {\r\n        \"_time\": \"2017-07-24T11:59:27.047Z\",\r\n        \"Level\": 32\r\n    }, {\r\n        \"_time\": \"2017-07-24T12:34:27.047Z\",\r\n        \"Level\": 32\r\n    }, {\r\n        \"_time\": \"2017-07-24T13:09:27.047Z\",\r\n        \"Level\": 31\r\n    }, {\r\n        \"_time\": \"2017-07-24T13:44:27.047Z\",\r\n        \"Level\": 31\r\n    }, {\r\n        \"_time\": \"2017-07-24T14:19:27.047Z\",\r\n        \"Level\": 30\r\n    }, {\r\n        \"_time\": \"2017-07-24T14:54:27.047Z\",\r\n        \"Level\": 29\r\n    }, {\r\n        \"_time\": \"2017-07-24T15:29:27.047Z\",\r\n        \"Level\": 28\r\n    }, {\r\n        \"_time\": \"2017-07-24T16:04:27.047Z\",\r\n        \"Level\": 28\r\n    }, {\r\n        \"_time\": \"2017-07-24T16:39:27.047Z\",\r\n        \"Level\": 27\r\n    }, {\r\n        \"_time\": \"2017-07-24T17:14:27.047Z\",\r\n        \"Level\": 26\r\n    }, {\r\n        \"_time\": \"2017-07-24T17:49:27.047Z\",\r\n        \"Level\": 26\r\n    }, {\r\n        \"_time\": \"2017-07-24T18:24:27.047Z\",\r\n        \"Level\": 25\r\n    }, {\r\n        \"_time\": \"2017-07-24T18:59:27.047Z\",\r\n        \"Level\": 25\r\n    }, {\r\n        \"_time\": \"2017-07-24T19:34:27.047Z\",\r\n        \"Level\": 25\r\n    }, {\r\n        \"_time\": \"2017-07-24T20:09:27.047Z\",\r\n        \"Level\": 25\r\n    }, {\r\n        \"_time\": \"2017-07-24T20:44:27.047Z\",\r\n        \"Level\": 24\r\n    }, {\r\n        \"_time\": \"2017-07-24T21:19:27.047Z\",\r\n        \"Level\": 24\r\n    }, {\r\n        \"_time\": \"2017-07-24T21:54:27.047Z\",\r\n        \"Level\": 24\r\n    }, {\r\n        \"_time\": \"2017-07-24T22:29:27.047Z\",\r\n        \"Level\": 24\r\n    }, {\r\n        \"_time\": \"2017-07-24T23:04:27.047Z\",\r\n        \"Level\": 24\r\n    }, {\r\n        \"_time\": \"2017-07-24T23:39:27.047Z\",\r\n        \"Level\": 24\r\n    }, {\r\n        \"_time\": \"2017-07-25T00:14:27.047Z\",\r\n        \"Level\": 23\r\n    }, {\r\n        \"_time\": \"2017-07-25T00:49:27.047Z\",\r\n        \"Level\": 23\r\n    }, {\r\n        \"_time\": \"2017-07-25T01:24:27.047Z\",\r\n        \"Level\": 23\r\n    }, {\r\n        \"_time\": \"2017-07-25T01:59:27.047Z\",\r\n        \"Level\": 23\r\n    }, {\r\n        \"_time\": \"2017-07-25T02:34:27.047Z\",\r\n        \"Level\": 22\r\n    }, {\r\n        \"_time\": \"2017-07-25T03:09:27.047Z\",\r\n        \"Level\": 22\r\n    }, {\r\n        \"_time\": \"2017-07-25T03:44:27.047Z\",\r\n        \"Level\": 22\r\n    }, {\r\n        \"_time\": \"2017-07-25T04:19:27.047Z\",\r\n        \"Level\": 21\r\n    }, {\r\n        \"_time\": \"2017-07-25T04:54:27.047Z\",\r\n        \"Level\": 21\r\n    }, {\r\n        \"_time\": \"2017-07-25T05:29:27.047Z\",\r\n        \"Level\": 21\r\n    }, {\r\n        \"_time\": \"2017-07-25T06:04:27.047Z\",\r\n        \"Level\": 20\r\n    }, {\r\n        \"_time\": \"2017-07-25T06:39:27.047Z\",\r\n        \"Level\": 20\r\n    }, {\r\n        \"_time\": \"2017-07-25T07:14:27.047Z\",\r\n        \"Level\": 19\r\n    }, {\r\n        \"_time\": \"2017-07-25T07:49:27.047Z\",\r\n        \"Level\": 19\r\n    }, {\r\n        \"_time\": \"2017-07-25T08:24:27.047Z\",\r\n        \"Level\": 19\r\n    }, {\r\n        \"_time\": \"2017-07-25T08:59:27.047Z\",\r\n        \"Level\": 19\r\n    }, {\r\n        \"_time\": \"2017-07-25T09:34:27.047Z\",\r\n        \"Level\": 19\r\n    }, {\r\n        \"_time\": \"2017-07-25T10:09:27.047Z\",\r\n        \"Level\": 18\r\n    }, {\r\n        \"_time\": \"2017-07-25T10:44:27.047Z\",\r\n        \"Level\": 18\r\n    }, {\r\n        \"_time\": \"2017-07-25T11:19:27.047Z\",\r\n        \"Level\": 17\r\n    }, {\r\n        \"_time\": \"2017-07-25T11:54:27.047Z\",\r\n        \"Level\": 17\r\n    }, {\r\n        \"_time\": \"2017-07-25T12:29:27.047Z\",\r\n        \"Level\": 17\r\n    }, {\r\n        \"_time\": \"2017-07-25T13:04:27.047Z\",\r\n        \"Level\": 17\r\n    }, {\r\n        \"_time\": \"2017-07-25T13:39:27.047Z\",\r\n        \"Level\": 16\r\n    }, {\r\n        \"_time\": \"2017-07-25T14:14:27.047Z\",\r\n        \"Level\": 15\r\n    }, {\r\n        \"_time\": \"2017-07-25T14:49:27.047Z\",\r\n        \"Level\": 15\r\n    }, {\r\n        \"_time\": \"2017-07-25T15:24:27.047Z\",\r\n        \"Level\": 14\r\n    }, {\r\n        \"_time\": \"2017-07-25T15:59:27.047Z\",\r\n        \"Level\": 14\r\n    }, {\r\n        \"_time\": \"2017-07-25T16:34:27.047Z\",\r\n        \"Level\": 13\r\n    }, {\r\n        \"_time\": \"2017-07-25T17:09:27.047Z\",\r\n        \"Level\": 13\r\n    }, {\r\n        \"_time\": \"2017-07-25T17:44:27.047Z\",\r\n        \"Level\": 13\r\n    }, {\r\n        \"_time\": \"2017-07-25T18:19:27.047Z\",\r\n        \"Level\": 13\r\n    }, {\r\n        \"_time\": \"2017-07-25T18:54:27.047Z\",\r\n        \"Level\": 13\r\n    }, {\r\n        \"_time\": \"2017-07-25T19:29:27.047Z\",\r\n        \"Level\": 13\r\n    }, {\r\n        \"_time\": \"2017-07-25T20:04:27.047Z\",\r\n        \"Level\": 12\r\n    }, {\r\n        \"_time\": \"2017-07-25T20:39:27.047Z\",\r\n        \"Level\": 12\r\n    }, {\r\n        \"_time\": \"2017-07-25T21:14:27.047Z\",\r\n        \"Level\": 12\r\n    }, {\r\n        \"_time\": \"2017-07-25T21:49:27.047Z\",\r\n        \"Level\": 12\r\n    }, {\r\n        \"_time\": \"2017-07-25T22:24:27.047Z\",\r\n        \"Level\": 12\r\n    }, {\r\n        \"_time\": \"2017-07-25T22:59:27.047Z\",\r\n        \"Level\": 12\r\n    }, {\r\n        \"_time\": \"2017-07-25T23:34:27.047Z\",\r\n        \"Level\": 11\r\n    }, {\r\n        \"_time\": \"2017-07-26T00:09:27.047Z\",\r\n        \"Level\": 10\r\n    }, {\r\n        \"_time\": \"2017-07-26T00:44:27.047Z\",\r\n        \"Level\": 9\r\n    }, {\r\n        \"_time\": \"2017-07-26T01:19:27.047Z\",\r\n        \"Level\": 8\r\n    }, {\r\n        \"_time\": \"2017-07-26T01:54:27.047Z\",\r\n        \"Level\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-26T02:29:27.047Z\",\r\n        \"Level\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-26T03:04:27.047Z\",\r\n        \"Level\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-26T03:39:27.047Z\",\r\n        \"Level\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-26T04:14:27.047Z\",\r\n        \"Level\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-26T04:49:27.047Z\",\r\n        \"Level\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-26T05:24:27.047Z\",\r\n        \"Level\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-26T05:59:27.047Z\",\r\n        \"Level\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-26T06:34:27.047Z\",\r\n        \"Level\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-26T07:09:27.047Z\",\r\n        \"Level\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-26T07:44:27.047Z\",\r\n        \"Level\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-26T08:19:27.047Z\",\r\n        \"Level\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-26T08:54:27.047Z\",\r\n        \"Level\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-26T09:29:27.047Z\",\r\n        \"Level\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-26T10:04:27.047Z\",\r\n        \"Level\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-26T10:39:27.047Z\",\r\n        \"Level\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-26T11:14:27.047Z\",\r\n        \"Level\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-26T11:49:27.047Z\",\r\n        \"Level\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-26T12:24:27.047Z\",\r\n        \"Level\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-26T12:59:27.047Z\",\r\n        \"Level\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-26T13:34:27.047Z\",\r\n        \"Level\": 5\r\n    }, {\r\n        \"_time\": \"2017-07-26T14:09:27.047Z\",\r\n        \"Level\": 4\r\n    }, {\r\n        \"_time\": \"2017-07-26T14:44:27.047Z\",\r\n        \"Level\": 3\r\n    }]\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create Timeseries Data - Level",
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/appiot-mds/Things('{{yourthingId}}')/{{packagePrefix}}.{{packageId}}:greenhouse_{{number}}/status_capability_{{number}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "x-csrf-token",
+								"value": "{{x-csrf-token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"value\": [{\r\n        \"_time\": \"2017-07-19T14:44:27.032Z\",\r\n        \"Pressure\": 11\r\n    }, {\r\n        \"_time\": \"2017-07-19T15:19:27.032Z\",\r\n        \"Pressure\": 4\r\n    }, {\r\n        \"_time\": \"2017-07-19T15:54:27.032Z\",\r\n        \"Pressure\": 4\r\n    }, {\r\n        \"_time\": \"2017-07-19T16:29:27.032Z\",\r\n        \"Pressure\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-19T17:04:27.032Z\",\r\n        \"Pressure\": 2\r\n    }, {\r\n        \"_time\": \"2017-07-19T17:39:27.032Z\",\r\n        \"Pressure\": 9\r\n    }, {\r\n        \"_time\": \"2017-07-19T18:14:27.032Z\",\r\n        \"Pressure\": 2\r\n    }, {\r\n        \"_time\": \"2017-07-19T18:49:27.032Z\",\r\n        \"Pressure\": 4\r\n    }, {\r\n        \"_time\": \"2017-07-19T19:24:27.032Z\",\r\n        \"Pressure\": 1\r\n    }, {\r\n        \"_time\": \"2017-07-19T19:59:27.032Z\",\r\n        \"Pressure\": 9\r\n    }, {\r\n        \"_time\": \"2017-07-19T20:34:27.032Z\",\r\n        \"Pressure\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-19T21:09:27.032Z\",\r\n        \"Pressure\": 5\r\n    }, {\r\n        \"_time\": \"2017-07-19T21:44:27.032Z\",\r\n        \"Pressure\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-19T22:19:27.032Z\",\r\n        \"Pressure\": 8\r\n    }, {\r\n        \"_time\": \"2017-07-19T22:54:27.032Z\",\r\n        \"Pressure\": 9\r\n    }, {\r\n        \"_time\": \"2017-07-19T23:29:27.032Z\",\r\n        \"Pressure\": 1\r\n    }, {\r\n        \"_time\": \"2017-07-20T00:04:27.032Z\",\r\n        \"Pressure\": 9\r\n    }, {\r\n        \"_time\": \"2017-07-20T00:39:27.032Z\",\r\n        \"Pressure\": 4\r\n    }, {\r\n        \"_time\": \"2017-07-20T01:14:27.032Z\",\r\n        \"Pressure\": 0\r\n    }, {\r\n        \"_time\": \"2017-07-20T01:49:27.032Z\",\r\n        \"Pressure\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-20T02:24:27.032Z\",\r\n        \"Pressure\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-20T02:59:27.032Z\",\r\n        \"Pressure\": 10\r\n    }, {\r\n        \"_time\": \"2017-07-20T03:34:27.032Z\",\r\n        \"Pressure\": 9\r\n    }, {\r\n        \"_time\": \"2017-07-20T04:09:27.032Z\",\r\n        \"Pressure\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-20T04:44:27.032Z\",\r\n        \"Pressure\": 3\r\n    }, {\r\n        \"_time\": \"2017-07-20T05:19:27.032Z\",\r\n        \"Pressure\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-20T05:54:27.032Z\",\r\n        \"Pressure\": 5\r\n    }, {\r\n        \"_time\": \"2017-07-20T06:29:27.032Z\",\r\n        \"Pressure\": 5\r\n    }, {\r\n        \"_time\": \"2017-07-20T07:04:27.032Z\",\r\n        \"Pressure\": 11\r\n    }, {\r\n        \"_time\": \"2017-07-20T07:39:27.032Z\",\r\n        \"Pressure\": 1\r\n    }, {\r\n        \"_time\": \"2017-07-20T08:14:27.032Z\",\r\n        \"Pressure\": 2\r\n    }, {\r\n        \"_time\": \"2017-07-20T08:49:27.032Z\",\r\n        \"Pressure\": 9\r\n    }, {\r\n        \"_time\": \"2017-07-20T09:24:27.032Z\",\r\n        \"Pressure\": 2\r\n    }, {\r\n        \"_time\": \"2017-07-20T09:59:27.032Z\",\r\n        \"Pressure\": 2\r\n    }, {\r\n        \"_time\": \"2017-07-20T10:34:27.032Z\",\r\n        \"Pressure\": 4\r\n    }, {\r\n        \"_time\": \"2017-07-20T11:09:27.032Z\",\r\n        \"Pressure\": 2\r\n    }, {\r\n        \"_time\": \"2017-07-20T11:44:27.032Z\",\r\n        \"Pressure\": 3\r\n    }, {\r\n        \"_time\": \"2017-07-20T12:19:27.032Z\",\r\n        \"Pressure\": 11\r\n    }, {\r\n        \"_time\": \"2017-07-20T12:54:27.032Z\",\r\n        \"Pressure\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-20T13:29:27.032Z\",\r\n        \"Pressure\": 11\r\n    }, {\r\n        \"_time\": \"2017-07-20T14:04:27.032Z\",\r\n        \"Pressure\": 10\r\n    }, {\r\n        \"_time\": \"2017-07-20T14:39:27.032Z\",\r\n        \"Pressure\": 3\r\n    }, {\r\n        \"_time\": \"2017-07-20T15:14:27.032Z\",\r\n        \"Pressure\": 11\r\n    }, {\r\n        \"_time\": \"2017-07-20T15:49:27.032Z\",\r\n        \"Pressure\": 5\r\n    }, {\r\n        \"_time\": \"2017-07-20T16:24:27.032Z\",\r\n        \"Pressure\": 10\r\n    }, {\r\n        \"_time\": \"2017-07-20T16:59:27.032Z\",\r\n        \"Pressure\": 4\r\n    }, {\r\n        \"_time\": \"2017-07-20T17:34:27.032Z\",\r\n        \"Pressure\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-20T18:09:27.032Z\",\r\n        \"Pressure\": 0\r\n    }, {\r\n        \"_time\": \"2017-07-20T18:44:27.032Z\",\r\n        \"Pressure\": 1\r\n    }, {\r\n        \"_time\": \"2017-07-20T19:19:27.032Z\",\r\n        \"Pressure\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-20T19:54:27.032Z\",\r\n        \"Pressure\": 4\r\n    }, {\r\n        \"_time\": \"2017-07-20T20:29:27.032Z\",\r\n        \"Pressure\": 2\r\n    }, {\r\n        \"_time\": \"2017-07-20T21:04:27.032Z\",\r\n        \"Pressure\": 4\r\n    }, {\r\n        \"_time\": \"2017-07-20T21:39:27.032Z\",\r\n        \"Pressure\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-20T22:14:27.032Z\",\r\n        \"Pressure\": 3\r\n    }, {\r\n        \"_time\": \"2017-07-20T22:49:27.032Z\",\r\n        \"Pressure\": 11\r\n    }, {\r\n        \"_time\": \"2017-07-20T23:24:27.032Z\",\r\n        \"Pressure\": 8\r\n    }, {\r\n        \"_time\": \"2017-07-20T23:59:27.032Z\",\r\n        \"Pressure\": 10\r\n    }, {\r\n        \"_time\": \"2017-07-21T00:34:27.032Z\",\r\n        \"Pressure\": 3\r\n    }, {\r\n        \"_time\": \"2017-07-21T01:09:27.032Z\",\r\n        \"Pressure\": 10\r\n    }, {\r\n        \"_time\": \"2017-07-21T01:44:27.032Z\",\r\n        \"Pressure\": 1\r\n    }, {\r\n        \"_time\": \"2017-07-21T02:19:27.032Z\",\r\n        \"Pressure\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-21T02:54:27.032Z\",\r\n        \"Pressure\": 5\r\n    }, {\r\n        \"_time\": \"2017-07-21T03:29:27.032Z\",\r\n        \"Pressure\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-21T04:04:27.032Z\",\r\n        \"Pressure\": 4\r\n    }, {\r\n        \"_time\": \"2017-07-21T04:39:27.032Z\",\r\n        \"Pressure\": 3\r\n    }, {\r\n        \"_time\": \"2017-07-21T05:14:27.032Z\",\r\n        \"Pressure\": 3\r\n    }, {\r\n        \"_time\": \"2017-07-21T05:49:27.032Z\",\r\n        \"Pressure\": 4\r\n    }, {\r\n        \"_time\": \"2017-07-21T06:24:27.032Z\",\r\n        \"Pressure\": 1\r\n    }, {\r\n        \"_time\": \"2017-07-21T06:59:27.032Z\",\r\n        \"Pressure\": 5\r\n    }, {\r\n        \"_time\": \"2017-07-21T07:34:27.032Z\",\r\n        \"Pressure\": 9\r\n    }, {\r\n        \"_time\": \"2017-07-21T08:09:27.032Z\",\r\n        \"Pressure\": 11\r\n    }, {\r\n        \"_time\": \"2017-07-21T08:44:27.032Z\",\r\n        \"Pressure\": 4\r\n    }, {\r\n        \"_time\": \"2017-07-21T09:19:27.032Z\",\r\n        \"Pressure\": 2\r\n    }, {\r\n        \"_time\": \"2017-07-21T09:54:27.032Z\",\r\n        \"Pressure\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-21T10:29:27.032Z\",\r\n        \"Pressure\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-21T11:04:27.032Z\",\r\n        \"Pressure\": 3\r\n    }, {\r\n        \"_time\": \"2017-07-21T11:39:27.032Z\",\r\n        \"Pressure\": 2\r\n    }, {\r\n        \"_time\": \"2017-07-21T12:14:27.032Z\",\r\n        \"Pressure\": 3\r\n    }, {\r\n        \"_time\": \"2017-07-21T12:49:27.032Z\",\r\n        \"Pressure\": 9\r\n    }, {\r\n        \"_time\": \"2017-07-21T13:24:27.032Z\",\r\n        \"Pressure\": 1\r\n    }, {\r\n        \"_time\": \"2017-07-21T13:59:27.032Z\",\r\n        \"Pressure\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-21T14:34:27.032Z\",\r\n        \"Pressure\": 10\r\n    }, {\r\n        \"_time\": \"2017-07-21T15:09:27.032Z\",\r\n        \"Pressure\": 0\r\n    }, {\r\n        \"_time\": \"2017-07-21T15:44:27.032Z\",\r\n        \"Pressure\": 11\r\n    }, {\r\n        \"_time\": \"2017-07-21T16:19:27.032Z\",\r\n        \"Pressure\": 8\r\n    }, {\r\n        \"_time\": \"2017-07-21T16:54:27.032Z\",\r\n        \"Pressure\": 2\r\n    }, {\r\n        \"_time\": \"2017-07-21T17:29:27.032Z\",\r\n        \"Pressure\": 8\r\n    }, {\r\n        \"_time\": \"2017-07-21T18:04:27.032Z\",\r\n        \"Pressure\": 10\r\n    }, {\r\n        \"_time\": \"2017-07-21T18:39:27.032Z\",\r\n        \"Pressure\": 9\r\n    }, {\r\n        \"_time\": \"2017-07-21T19:14:27.032Z\",\r\n        \"Pressure\": 3\r\n    }, {\r\n        \"_time\": \"2017-07-21T19:49:27.032Z\",\r\n        \"Pressure\": 5\r\n    }, {\r\n        \"_time\": \"2017-07-21T20:24:27.032Z\",\r\n        \"Pressure\": 4\r\n    }, {\r\n        \"_time\": \"2017-07-21T20:59:27.032Z\",\r\n        \"Pressure\": 5\r\n    }, {\r\n        \"_time\": \"2017-07-21T21:34:27.032Z\",\r\n        \"Pressure\": 1\r\n    }, {\r\n        \"_time\": \"2017-07-21T22:09:27.032Z\",\r\n        \"Pressure\": 2\r\n    }, {\r\n        \"_time\": \"2017-07-21T22:44:27.032Z\",\r\n        \"Pressure\": 5\r\n    }, {\r\n        \"_time\": \"2017-07-21T23:19:27.032Z\",\r\n        \"Pressure\": 9\r\n    }, {\r\n        \"_time\": \"2017-07-21T23:54:27.032Z\",\r\n        \"Pressure\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-22T00:29:27.032Z\",\r\n        \"Pressure\": 4\r\n    }, {\r\n        \"_time\": \"2017-07-22T01:04:27.032Z\",\r\n        \"Pressure\": 9\r\n    }, {\r\n        \"_time\": \"2017-07-22T01:39:27.032Z\",\r\n        \"Pressure\": 4\r\n    }, {\r\n        \"_time\": \"2017-07-22T02:14:27.032Z\",\r\n        \"Pressure\": 0\r\n    }, {\r\n        \"_time\": \"2017-07-22T02:49:27.032Z\",\r\n        \"Pressure\": 11\r\n    }, {\r\n        \"_time\": \"2017-07-22T03:24:27.032Z\",\r\n        \"Pressure\": 10\r\n    }, {\r\n        \"_time\": \"2017-07-22T03:59:27.032Z\",\r\n        \"Pressure\": 4\r\n    }, {\r\n        \"_time\": \"2017-07-22T04:34:27.032Z\",\r\n        \"Pressure\": 3\r\n    }, {\r\n        \"_time\": \"2017-07-22T05:09:27.032Z\",\r\n        \"Pressure\": 10\r\n    }, {\r\n        \"_time\": \"2017-07-22T05:44:27.032Z\",\r\n        \"Pressure\": 9\r\n    }, {\r\n        \"_time\": \"2017-07-22T06:19:27.032Z\",\r\n        \"Pressure\": 3\r\n    }, {\r\n        \"_time\": \"2017-07-22T06:54:27.032Z\",\r\n        \"Pressure\": 10\r\n    }, {\r\n        \"_time\": \"2017-07-22T07:29:27.032Z\",\r\n        \"Pressure\": 5\r\n    }, {\r\n        \"_time\": \"2017-07-22T08:04:27.032Z\",\r\n        \"Pressure\": 0\r\n    }, {\r\n        \"_time\": \"2017-07-22T08:39:27.032Z\",\r\n        \"Pressure\": 1\r\n    }, {\r\n        \"_time\": \"2017-07-22T09:14:27.032Z\",\r\n        \"Pressure\": 8\r\n    }, {\r\n        \"_time\": \"2017-07-22T09:49:27.032Z\",\r\n        \"Pressure\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-22T10:24:27.032Z\",\r\n        \"Pressure\": 4\r\n    }, {\r\n        \"_time\": \"2017-07-22T10:59:27.032Z\",\r\n        \"Pressure\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-22T11:34:27.032Z\",\r\n        \"Pressure\": 10\r\n    }, {\r\n        \"_time\": \"2017-07-22T12:09:27.032Z\",\r\n        \"Pressure\": 10\r\n    }, {\r\n        \"_time\": \"2017-07-22T12:44:27.032Z\",\r\n        \"Pressure\": 8\r\n    }, {\r\n        \"_time\": \"2017-07-22T13:19:27.032Z\",\r\n        \"Pressure\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-22T13:54:27.032Z\",\r\n        \"Pressure\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-22T14:29:27.032Z\",\r\n        \"Pressure\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-22T15:04:27.032Z\",\r\n        \"Pressure\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-22T15:39:27.032Z\",\r\n        \"Pressure\": 11\r\n    }, {\r\n        \"_time\": \"2017-07-22T16:14:27.032Z\",\r\n        \"Pressure\": 3\r\n    }, {\r\n        \"_time\": \"2017-07-22T16:49:27.032Z\",\r\n        \"Pressure\": 10\r\n    }, {\r\n        \"_time\": \"2017-07-22T17:24:27.032Z\",\r\n        \"Pressure\": 2\r\n    }, {\r\n        \"_time\": \"2017-07-22T17:59:27.032Z\",\r\n        \"Pressure\": 8\r\n    }, {\r\n        \"_time\": \"2017-07-22T18:34:27.032Z\",\r\n        \"Pressure\": 10\r\n    }, {\r\n        \"_time\": \"2017-07-22T19:09:27.032Z\",\r\n        \"Pressure\": 1\r\n    }, {\r\n        \"_time\": \"2017-07-22T19:44:27.032Z\",\r\n        \"Pressure\": 10\r\n    }, {\r\n        \"_time\": \"2017-07-22T20:19:27.032Z\",\r\n        \"Pressure\": 0\r\n    }, {\r\n        \"_time\": \"2017-07-22T20:54:27.032Z\",\r\n        \"Pressure\": 5\r\n    }, {\r\n        \"_time\": \"2017-07-22T21:29:27.032Z\",\r\n        \"Pressure\": 10\r\n    }, {\r\n        \"_time\": \"2017-07-22T22:04:27.032Z\",\r\n        \"Pressure\": 1\r\n    }, {\r\n        \"_time\": \"2017-07-22T22:39:27.032Z\",\r\n        \"Pressure\": 11\r\n    }, {\r\n        \"_time\": \"2017-07-22T23:14:27.032Z\",\r\n        \"Pressure\": 10\r\n    }, {\r\n        \"_time\": \"2017-07-22T23:49:27.032Z\",\r\n        \"Pressure\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-23T00:24:27.032Z\",\r\n        \"Pressure\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-23T00:59:27.032Z\",\r\n        \"Pressure\": 5\r\n    }, {\r\n        \"_time\": \"2017-07-23T01:34:27.032Z\",\r\n        \"Pressure\": 2\r\n    }, {\r\n        \"_time\": \"2017-07-23T02:09:27.032Z\",\r\n        \"Pressure\": 4\r\n    }, {\r\n        \"_time\": \"2017-07-23T02:44:27.032Z\",\r\n        \"Pressure\": 0\r\n    }, {\r\n        \"_time\": \"2017-07-23T03:19:27.032Z\",\r\n        \"Pressure\": 9\r\n    }, {\r\n        \"_time\": \"2017-07-23T03:54:27.032Z\",\r\n        \"Pressure\": 0\r\n    }, {\r\n        \"_time\": \"2017-07-23T04:29:27.032Z\",\r\n        \"Pressure\": 11\r\n    }, {\r\n        \"_time\": \"2017-07-23T05:04:27.032Z\",\r\n        \"Pressure\": 4\r\n    }, {\r\n        \"_time\": \"2017-07-23T05:39:27.032Z\",\r\n        \"Pressure\": 9\r\n    }, {\r\n        \"_time\": \"2017-07-23T06:14:27.032Z\",\r\n        \"Pressure\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-23T06:49:27.032Z\",\r\n        \"Pressure\": 4\r\n    }, {\r\n        \"_time\": \"2017-07-23T07:24:27.032Z\",\r\n        \"Pressure\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-23T07:59:27.032Z\",\r\n        \"Pressure\": 2\r\n    }, {\r\n        \"_time\": \"2017-07-23T08:34:27.032Z\",\r\n        \"Pressure\": 4\r\n    }, {\r\n        \"_time\": \"2017-07-23T09:09:27.032Z\",\r\n        \"Pressure\": 8\r\n    }, {\r\n        \"_time\": \"2017-07-23T09:44:27.032Z\",\r\n        \"Pressure\": 8\r\n    }, {\r\n        \"_time\": \"2017-07-23T10:19:27.032Z\",\r\n        \"Pressure\": 10\r\n    }, {\r\n        \"_time\": \"2017-07-23T10:54:27.032Z\",\r\n        \"Pressure\": 10\r\n    }, {\r\n        \"_time\": \"2017-07-23T11:29:27.032Z\",\r\n        \"Pressure\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-23T12:04:27.032Z\",\r\n        \"Pressure\": 5\r\n    }, {\r\n        \"_time\": \"2017-07-23T12:39:27.032Z\",\r\n        \"Pressure\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-23T13:14:27.032Z\",\r\n        \"Pressure\": 2\r\n    }, {\r\n        \"_time\": \"2017-07-23T13:49:27.032Z\",\r\n        \"Pressure\": 5\r\n    }, {\r\n        \"_time\": \"2017-07-23T14:24:27.032Z\",\r\n        \"Pressure\": 8\r\n    }, {\r\n        \"_time\": \"2017-07-23T14:59:27.032Z\",\r\n        \"Pressure\": 10\r\n    }, {\r\n        \"_time\": \"2017-07-23T15:34:27.032Z\",\r\n        \"Pressure\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-23T16:09:27.032Z\",\r\n        \"Pressure\": 1\r\n    }, {\r\n        \"_time\": \"2017-07-23T16:44:27.032Z\",\r\n        \"Pressure\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-23T17:19:27.032Z\",\r\n        \"Pressure\": 1\r\n    }, {\r\n        \"_time\": \"2017-07-23T17:54:27.032Z\",\r\n        \"Pressure\": 3\r\n    }, {\r\n        \"_time\": \"2017-07-23T18:29:27.032Z\",\r\n        \"Pressure\": 5\r\n    }, {\r\n        \"_time\": \"2017-07-23T19:04:27.032Z\",\r\n        \"Pressure\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-23T19:39:27.032Z\",\r\n        \"Pressure\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-23T20:14:27.032Z\",\r\n        \"Pressure\": 3\r\n    }, {\r\n        \"_time\": \"2017-07-23T20:49:27.032Z\",\r\n        \"Pressure\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-23T21:24:27.032Z\",\r\n        \"Pressure\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-23T21:59:27.032Z\",\r\n        \"Pressure\": 0\r\n    }, {\r\n        \"_time\": \"2017-07-23T22:34:27.032Z\",\r\n        \"Pressure\": 9\r\n    }, {\r\n        \"_time\": \"2017-07-23T23:09:27.032Z\",\r\n        \"Pressure\": 9\r\n    }, {\r\n        \"_time\": \"2017-07-23T23:44:27.032Z\",\r\n        \"Pressure\": 3\r\n    }, {\r\n        \"_time\": \"2017-07-24T00:19:27.032Z\",\r\n        \"Pressure\": 8\r\n    }, {\r\n        \"_time\": \"2017-07-24T00:54:27.032Z\",\r\n        \"Pressure\": 11\r\n    }, {\r\n        \"_time\": \"2017-07-24T01:29:27.032Z\",\r\n        \"Pressure\": 10\r\n    }, {\r\n        \"_time\": \"2017-07-24T02:04:27.032Z\",\r\n        \"Pressure\": 1\r\n    }, {\r\n        \"_time\": \"2017-07-24T02:39:27.032Z\",\r\n        \"Pressure\": 2\r\n    }, {\r\n        \"_time\": \"2017-07-24T03:14:27.032Z\",\r\n        \"Pressure\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-24T03:49:27.032Z\",\r\n        \"Pressure\": 0\r\n    }, {\r\n        \"_time\": \"2017-07-24T04:24:27.032Z\",\r\n        \"Pressure\": 0\r\n    }, {\r\n        \"_time\": \"2017-07-24T04:59:27.032Z\",\r\n        \"Pressure\": 10\r\n    }, {\r\n        \"_time\": \"2017-07-24T05:34:27.032Z\",\r\n        \"Pressure\": 3\r\n    }, {\r\n        \"_time\": \"2017-07-24T06:09:27.032Z\",\r\n        \"Pressure\": 0\r\n    }, {\r\n        \"_time\": \"2017-07-24T06:44:27.032Z\",\r\n        \"Pressure\": 11\r\n    }, {\r\n        \"_time\": \"2017-07-24T07:19:27.032Z\",\r\n        \"Pressure\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-24T07:54:27.032Z\",\r\n        \"Pressure\": 0\r\n    }, {\r\n        \"_time\": \"2017-07-24T08:29:27.032Z\",\r\n        \"Pressure\": 9\r\n    }, {\r\n        \"_time\": \"2017-07-24T09:04:27.032Z\",\r\n        \"Pressure\": 0\r\n    }, {\r\n        \"_time\": \"2017-07-24T09:39:27.032Z\",\r\n        \"Pressure\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-24T10:14:27.032Z\",\r\n        \"Pressure\": 10\r\n    }, {\r\n        \"_time\": \"2017-07-24T10:49:27.032Z\",\r\n        \"Pressure\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-24T11:24:27.032Z\",\r\n        \"Pressure\": 8\r\n    }, {\r\n        \"_time\": \"2017-07-24T11:59:27.032Z\",\r\n        \"Pressure\": 10\r\n    }, {\r\n        \"_time\": \"2017-07-24T12:34:27.032Z\",\r\n        \"Pressure\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-24T13:09:27.032Z\",\r\n        \"Pressure\": 0\r\n    }, {\r\n        \"_time\": \"2017-07-24T13:44:27.032Z\",\r\n        \"Pressure\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-24T14:19:27.032Z\",\r\n        \"Pressure\": 10\r\n    }, {\r\n        \"_time\": \"2017-07-24T14:54:27.032Z\",\r\n        \"Pressure\": 3\r\n    }, {\r\n        \"_time\": \"2017-07-24T15:29:27.032Z\",\r\n        \"Pressure\": 2\r\n    }, {\r\n        \"_time\": \"2017-07-24T16:04:27.032Z\",\r\n        \"Pressure\": 0\r\n    }, {\r\n        \"_time\": \"2017-07-24T16:39:27.032Z\",\r\n        \"Pressure\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-24T17:14:27.032Z\",\r\n        \"Pressure\": 11\r\n    }, {\r\n        \"_time\": \"2017-07-24T17:49:27.032Z\",\r\n        \"Pressure\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-24T18:24:27.032Z\",\r\n        \"Pressure\": 2\r\n    }, {\r\n        \"_time\": \"2017-07-24T18:59:27.032Z\",\r\n        \"Pressure\": 5\r\n    }, {\r\n        \"_time\": \"2017-07-24T19:34:27.032Z\",\r\n        \"Pressure\": 4\r\n    }, {\r\n        \"_time\": \"2017-07-24T20:09:27.032Z\",\r\n        \"Pressure\": 9\r\n    }, {\r\n        \"_time\": \"2017-07-24T20:44:27.032Z\",\r\n        \"Pressure\": 10\r\n    }, {\r\n        \"_time\": \"2017-07-24T21:19:27.032Z\",\r\n        \"Pressure\": 4\r\n    }, {\r\n        \"_time\": \"2017-07-24T21:54:27.032Z\",\r\n        \"Pressure\": 8\r\n    }, {\r\n        \"_time\": \"2017-07-24T22:29:27.032Z\",\r\n        \"Pressure\": 1\r\n    }, {\r\n        \"_time\": \"2017-07-24T23:04:27.032Z\",\r\n        \"Pressure\": 1\r\n    }, {\r\n        \"_time\": \"2017-07-24T23:39:27.032Z\",\r\n        \"Pressure\": 3\r\n    }, {\r\n        \"_time\": \"2017-07-25T00:14:27.032Z\",\r\n        \"Pressure\": 5\r\n    }, {\r\n        \"_time\": \"2017-07-25T00:49:27.032Z\",\r\n        \"Pressure\": 5\r\n    }, {\r\n        \"_time\": \"2017-07-25T01:24:27.032Z\",\r\n        \"Pressure\": 3\r\n    }, {\r\n        \"_time\": \"2017-07-25T01:59:27.032Z\",\r\n        \"Pressure\": 9\r\n    }, {\r\n        \"_time\": \"2017-07-25T02:34:27.032Z\",\r\n        \"Pressure\": 1\r\n    }, {\r\n        \"_time\": \"2017-07-25T03:09:27.032Z\",\r\n        \"Pressure\": 8\r\n    }, {\r\n        \"_time\": \"2017-07-25T03:44:27.032Z\",\r\n        \"Pressure\": 10\r\n    }, {\r\n        \"_time\": \"2017-07-25T04:19:27.032Z\",\r\n        \"Pressure\": 2\r\n    }, {\r\n        \"_time\": \"2017-07-25T04:54:27.032Z\",\r\n        \"Pressure\": 0\r\n    }, {\r\n        \"_time\": \"2017-07-25T05:29:27.032Z\",\r\n        \"Pressure\": 11\r\n    }, {\r\n        \"_time\": \"2017-07-25T06:04:27.032Z\",\r\n        \"Pressure\": 3\r\n    }, {\r\n        \"_time\": \"2017-07-25T06:39:27.032Z\",\r\n        \"Pressure\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-25T07:14:27.032Z\",\r\n        \"Pressure\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-25T07:49:27.032Z\",\r\n        \"Pressure\": 2\r\n    }, {\r\n        \"_time\": \"2017-07-25T08:24:27.032Z\",\r\n        \"Pressure\": 9\r\n    }, {\r\n        \"_time\": \"2017-07-25T08:59:27.032Z\",\r\n        \"Pressure\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-25T09:34:27.032Z\",\r\n        \"Pressure\": 1\r\n    }, {\r\n        \"_time\": \"2017-07-25T10:09:27.032Z\",\r\n        \"Pressure\": 8\r\n    }, {\r\n        \"_time\": \"2017-07-25T10:44:27.032Z\",\r\n        \"Pressure\": 9\r\n    }, {\r\n        \"_time\": \"2017-07-25T11:19:27.032Z\",\r\n        \"Pressure\": 10\r\n    }, {\r\n        \"_time\": \"2017-07-25T11:54:27.032Z\",\r\n        \"Pressure\": 9\r\n    }, {\r\n        \"_time\": \"2017-07-25T12:29:27.032Z\",\r\n        \"Pressure\": 11\r\n    }, {\r\n        \"_time\": \"2017-07-25T13:04:27.032Z\",\r\n        \"Pressure\": 4\r\n    }, {\r\n        \"_time\": \"2017-07-25T13:39:27.032Z\",\r\n        \"Pressure\": 0\r\n    }, {\r\n        \"_time\": \"2017-07-25T14:14:27.032Z\",\r\n        \"Pressure\": 4\r\n    }, {\r\n        \"_time\": \"2017-07-25T14:49:27.032Z\",\r\n        \"Pressure\": 10\r\n    }, {\r\n        \"_time\": \"2017-07-25T15:24:27.032Z\",\r\n        \"Pressure\": 8\r\n    }, {\r\n        \"_time\": \"2017-07-25T15:59:27.032Z\",\r\n        \"Pressure\": 3\r\n    }, {\r\n        \"_time\": \"2017-07-25T16:34:27.032Z\",\r\n        \"Pressure\": 2\r\n    }, {\r\n        \"_time\": \"2017-07-25T17:09:27.032Z\",\r\n        \"Pressure\": 3\r\n    }, {\r\n        \"_time\": \"2017-07-25T17:44:27.032Z\",\r\n        \"Pressure\": 5\r\n    }, {\r\n        \"_time\": \"2017-07-25T18:19:27.032Z\",\r\n        \"Pressure\": 10\r\n    }, {\r\n        \"_time\": \"2017-07-25T18:54:27.032Z\",\r\n        \"Pressure\": 1\r\n    }, {\r\n        \"_time\": \"2017-07-25T19:29:27.032Z\",\r\n        \"Pressure\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-25T20:04:27.032Z\",\r\n        \"Pressure\": 3\r\n    }, {\r\n        \"_time\": \"2017-07-25T20:39:27.032Z\",\r\n        \"Pressure\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-25T21:14:27.032Z\",\r\n        \"Pressure\": 3\r\n    }, {\r\n        \"_time\": \"2017-07-25T21:49:27.032Z\",\r\n        \"Pressure\": 2\r\n    }, {\r\n        \"_time\": \"2017-07-25T22:24:27.032Z\",\r\n        \"Pressure\": 9\r\n    }, {\r\n        \"_time\": \"2017-07-25T22:59:27.032Z\",\r\n        \"Pressure\": 7\r\n    }, {\r\n        \"_time\": \"2017-07-25T23:34:27.032Z\",\r\n        \"Pressure\": 3\r\n    }, {\r\n        \"_time\": \"2017-07-26T00:09:27.032Z\",\r\n        \"Pressure\": 5\r\n    }, {\r\n        \"_time\": \"2017-07-26T00:44:27.032Z\",\r\n        \"Pressure\": 0\r\n    }, {\r\n        \"_time\": \"2017-07-26T01:19:27.032Z\",\r\n        \"Pressure\": 4\r\n    }, {\r\n        \"_time\": \"2017-07-26T01:54:27.032Z\",\r\n        \"Pressure\": 4\r\n    }, {\r\n        \"_time\": \"2017-07-26T02:29:27.032Z\",\r\n        \"Pressure\": 4\r\n    }, {\r\n        \"_time\": \"2017-07-26T03:04:27.032Z\",\r\n        \"Pressure\": 0\r\n    }, {\r\n        \"_time\": \"2017-07-26T03:39:27.032Z\",\r\n        \"Pressure\": 2\r\n    }, {\r\n        \"_time\": \"2017-07-26T04:14:27.032Z\",\r\n        \"Pressure\": 6\r\n    }, {\r\n        \"_time\": \"2017-07-26T04:49:27.032Z\",\r\n        \"Pressure\": 11\r\n    }, {\r\n        \"_time\": \"2017-07-26T05:24:27.032Z\",\r\n        \"Pressure\": 4\r\n    }, {\r\n        \"_time\": \"2017-07-26T05:59:27.032Z\",\r\n        \"Pressure\": 9\r\n    }, {\r\n        \"_time\": \"2017-07-26T06:34:27.032Z\",\r\n        \"Pressure\": 5\r\n    }, {\r\n        \"_time\": \"2017-07-26T07:09:27.032Z\",\r\n        \"Pressure\": 3\r\n    }, {\r\n        \"_time\": \"2017-07-26T07:44:27.032Z\",\r\n        \"Pressure\": 11\r\n    }, {\r\n        \"_time\": \"2017-07-26T08:19:27.032Z\",\r\n        \"Pressure\": 11\r\n    }, {\r\n        \"_time\": \"2017-07-26T08:54:27.032Z\",\r\n        \"Pressure\": 4\r\n    }, {\r\n        \"_time\": \"2017-07-26T09:29:27.032Z\",\r\n        \"Pressure\": 0\r\n    }, {\r\n        \"_time\": \"2017-07-26T10:04:27.032Z\",\r\n        \"Pressure\": 2\r\n    }, {\r\n        \"_time\": \"2017-07-26T10:39:27.032Z\",\r\n        \"Pressure\": 5\r\n    }, {\r\n        \"_time\": \"2017-07-26T11:14:27.032Z\",\r\n        \"Pressure\": 2\r\n    }, {\r\n        \"_time\": \"2017-07-26T11:49:27.032Z\",\r\n        \"Pressure\": 1\r\n    }, {\r\n        \"_time\": \"2017-07-26T12:24:27.032Z\",\r\n        \"Pressure\": 2\r\n    }, {\r\n        \"_time\": \"2017-07-26T12:59:27.032Z\",\r\n        \"Pressure\": 0\r\n    }, {\r\n        \"_time\": \"2017-07-26T13:34:27.032Z\",\r\n        \"Pressure\": 0\r\n    }, {\r\n        \"_time\": \"2017-07-26T14:09:27.032Z\",\r\n        \"Pressure\": 0\r\n    }]\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Read Timeseries Data",
+					"request": {
+						"url": {
+							"raw": "https://{{tenant}}.{{endpoint}}/appiot-mds/Things('{{yourthingId}}')/{{packagePrefix}}.{{packageId}}:greenhouse_{{number}}/status_capability_{{number}}?timerange=1D",
+							"protocol": "https",
+							"host": [
+								"{{tenant}}",
+								"{{endpoint}}"
+							],
+							"path": [
+								"appiot-mds",
+								"Things('{{yourthingId}}')",
+								"{{packagePrefix}}.{{packageId}}:greenhouse_{{number}}",
+								"status_capability_{{number}}"
+							],
+							"query": [
+								{
+									"key": "timerange",
+									"value": "1D"
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"value\": [\n    {\n      \"_time\": \"2017-02-02T06:00:03Z\",\n      \"status_capability_{{number}}\": \"22\",\n      \"status_capability_{{number}}_QC\": \"40\"\n    },\n    {\n      \"_time\": \"2017-02-02T06:10:03Z\",\n      \"status_capability_{{number}}\": \"24\",\n      \"status_capability_{{number}}_QC\": \"14\"\n    }\n  ]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Aggregate Query - M4",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var d = new Date();",
+									"postman.setEnvironmentVariable(\"currentDate\", d.toISOString());"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "https://{{tenant}}.{{endpoint}}/appiot-mds/Things('{{yourthingId}}')/{{packagePrefix}}.{{packageId}}:greenhouse_{{number}}/status_capability_{{number}}?timerange=2017-07-25T03:00:00Z-{{currentDate}}&$apply=sap.lineChart(divisions=5,property='Pressure')",
+							"protocol": "https",
+							"host": [
+								"{{tenant}}",
+								"{{endpoint}}"
+							],
+							"path": [
+								"appiot-mds",
+								"Things('{{yourthingId}}')",
+								"{{packagePrefix}}.{{packageId}}:greenhouse_{{number}}",
+								"status_capability_{{number}}"
+							],
+							"query": [
+								{
+									"key": "timerange",
+									"value": "2017-07-25T03:00:00Z-{{currentDate}}",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "$apply",
+									"value": "sap.lineChart(divisions=5,property='Pressure')",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Aggregate Query - MinMax",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var d = new Date();",
+									"postman.setEnvironmentVariable(\"currentDate\", d.toISOString());"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "https://{{tenant}}.{{endpoint}}/appiot-mds/Things('{{yourthingId}}')/{{packagePrefix}}.{{packageId}}:greenhouse_{{number}}/MinMax/'status_capability_{{number}},Pressure'?timerange=2017-07-25T03:00:00Z-{{currentDate}}",
+							"protocol": "https",
+							"host": [
+								"{{tenant}}",
+								"{{endpoint}}"
+							],
+							"path": [
+								"appiot-mds",
+								"Things('{{yourthingId}}')",
+								"{{packagePrefix}}.{{packageId}}:greenhouse_{{number}}",
+								"MinMax",
+								"'status_capability_{{number}},Pressure'"
+							],
+							"query": [
+								{
+									"key": "timerange",
+									"value": "2017-07-25T03:00:00Z-{{currentDate}}",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Aggregate Query - Snapshot",
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/appiot-mds/v2/Snapshot(thingId='{{yourthingId}}',fromTime='',toTime='',dataCategory='TimeSeriesData')",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Timeseries retention period",
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/appiot-mds/TimeseriesRetentionPeriod",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_tenant\" : \"iotae-ekt\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "04 Events",
+			"description": "",
+			"item": [
+				{
+					"name": "Fetch csrf token for Event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"postman.setEnvironmentVariable(\"x-csrf-token\", responseHeaders[\"X-Csrf-Token\"]);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/appiot-mds/Events",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "x-csrf-token",
+								"value": "Fetch",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Read All Events",
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/appiot-mds/Events",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create Event",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var d = new Date();",
+									"postman.setEnvironmentVariable(\"currentDate\", d.toISOString());"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/appiot-mds/Events",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "x-csrf-token",
+								"value": "{{x-csrf-token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_businessTimeStamp\": \"{{currentDate}}\",\r\n    \"_externalId\": \"ThresholdViolation\",\r\n    \"_type\": \"Threshold\",\r\n    \"_status\": \"Open\",\r\n    \"_severity\": 1,\r\n    \"_code\": 1,\r\n    \"_thingId\": \"{{yourthingId}}\",\r\n    \"_thingProperty\": \"{{packagePrefix}}.{{packageId}}:greenhouse_{{number}}/status_capability_{{number}}/Pressure\",\r\n    \"_description\": \"Pressure exceeded the configured threshold\",\r\n    \"_source\": \"Manual creation\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Read Event for your thing",
+					"request": {
+						"url": {
+							"raw": "https://{{tenant}}.{{endpoint}}/appiot-mds/Events?$filter=_thingId eq '{{yourthingId}}'",
+							"protocol": "https",
+							"host": [
+								"{{tenant}}",
+								"{{endpoint}}"
+							],
+							"path": [
+								"appiot-mds",
+								"Events"
+							],
+							"query": [
+								{
+									"key": "$filter",
+									"value": "_thingId eq '{{yourthingId}}'"
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Read All EventTypes",
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/appiot-tes/Events/EventTypes",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "05 Reference Properties",
+			"description": "",
+			"item": [
+				{
+					"name": "Fetch csrf token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"postman.setEnvironmentVariable(\"x-csrf-token\", responseHeaders[\"X-Csrf-Token\"]);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/appiot-mds/Things",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "x-csrf-token",
+								"value": "Fetch",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Write Reference data",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var d = new Date();",
+									"postman.setEnvironmentVariable(\"currentDate\", d.toISOString());"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": " https://{{tenant}}.{{endpoint}}/appiot-mds/Things('{{yourthingId}}')/ReferenceProperties/{{packagePrefix}}.{{packageId}}:greenhouse_{{number}}/status_capability_{{number}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "x-csrf-token",
+								"value": "{{x-csrf-token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"value\": [\n    {\n      \"_time\": \"{{currentDate}}\",\n      \"LowLowerThresholdPressure\": \"1.0\",\n      \"UpperUpperThresholdPressure\": \"14.0\",\n      \"UpperThresholdPressure\": \"12.0\",\n      \"UoMPressure\": null\n    }\n  ]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Read Reference data for a PropertySetType",
+					"request": {
+						"url": " https://{{tenant}}.{{endpoint}}/appiot-mds/Things('{{yourthingId}}')/ReferenceProperties/{{packagePrefix}}.{{packageId}}:greenhouse_{{number}}/status_capability_{{number}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"value\": [\n    {\n      \"_time\": \"2016-08-01T09:00:00Z\",\n      \"air_quality_UoM\": \"GJ\",\n      \"air_quality_UpperThreshold\": 100,\n      \"air_quality_LowerThreshold\": 10,\n      \"air_quality_LowLowerThreshold\": 5,\n      \"air_quality_UpperUpperThreshold\": 150\n      \n    },\n    {\n      \"_time\": \"2016-09-01T09:00:00Z\",\n      \"air_quality_UoM\": \"Btu\",\n      \"air_quality_UpperThreshold\": 100,\n      \"air_quality_LowerThreshold\": 20,\n      \"air_quality_LowLowerThreshold\": 5,\n      \"air_quality_UpperUpperThreshold\": 150\n    }\n  ]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Read Reference data-specific propertySetType-Property combinations",
+					"request": {
+						"url": {
+							"raw": "https://{{tenant}}.{{endpoint}}/appiot-mds/Things('{{yourthingId}}')/{{packagePrefix}}.{{packageId}}:greenhouse_{{number}}/ReferenceProperties/'status_capability_{{number}},Pressure'?timerange=1M",
+							"protocol": "https",
+							"host": [
+								"{{tenant}}",
+								"{{endpoint}}"
+							],
+							"path": [
+								"appiot-mds",
+								"Things('{{yourthingId}}')",
+								"{{packagePrefix}}.{{packageId}}:greenhouse_{{number}}",
+								"ReferenceProperties",
+								"'status_capability_{{number}},Pressure'"
+							],
+							"query": [
+								{
+									"key": "timerange",
+									"value": "1M",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"value\": [\n    {\n      \"_time\": \"2016-08-01T09:00:00Z\",\n      \"air_quality_UoM\": \"GJ\",\n      \"air_quality_UpperThreshold\": 100,\n      \"air_quality_LowerThreshold\": 10,\n      \"air_quality_LowLowerThreshold\": 5,\n      \"air_quality_UpperUpperThreshold\": 150\n      \n    },\n    {\n      \"_time\": \"2016-09-01T09:00:00Z\",\n      \"air_quality_UoM\": \"Btu\",\n      \"air_quality_UpperThreshold\": 100,\n      \"air_quality_LowerThreshold\": 20,\n      \"air_quality_LowLowerThreshold\": 5,\n      \"air_quality_UpperUpperThreshold\": 150\n    }\n  ]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "06 Analytical OData Service",
+			"description": "",
+			"item": [
+				{
+					"name": "Read Aggregates for a period of Time, Thing and Property Set Type",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var d = new Date();",
+									"var s = d.toISOString();",
+									"postman.setEnvironmentVariable(\"currentDate\", s.slice(0, -1));"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "https://{{tenant}}.{{endpoint}}/analytics-thing-sap/{{packagePrefix}}.{{packageId}}:status_capability_{{number}}/aggregates?$filter=id eq '{{yourthingId}}' and time ge datetime'2017-07-01T00:00:00' and time lt datetime'{{currentDate}}'",
+							"protocol": "https",
+							"host": [
+								"{{tenant}}",
+								"{{endpoint}}"
+							],
+							"path": [
+								"analytics-thing-sap",
+								"{{packagePrefix}}.{{packageId}}:status_capability_{{number}}",
+								"aggregates"
+							],
+							"query": [
+								{
+									"key": "$filter",
+									"value": "id eq '{{yourthingId}}' and time ge datetime'2017-07-01T00:00:00' and time lt datetime'{{currentDate}}'",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Read all Measurements for a period of Time, Thing and Property Set Type",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var d = new Date();",
+									"var s = d.toISOString();",
+									"postman.setEnvironmentVariable(\"currentDate\", s.slice(0, -1));"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "https://{{tenant}}.{{endpoint}}/analytics-thing-sap/{{packagePrefix}}.{{packageId}}:status_capability_{{number}}/measurements?$filter=id eq '{{yourthingId}}' and time ge datetime'2017-07-01T00:00:00' and time lt datetime'{{currentDate}}'",
+							"protocol": "https",
+							"host": [
+								"{{tenant}}",
+								"{{endpoint}}"
+							],
+							"path": [
+								"analytics-thing-sap",
+								"{{packagePrefix}}.{{packageId}}:status_capability_{{number}}",
+								"measurements"
+							],
+							"query": [
+								{
+									"key": "$filter",
+									"value": "id eq '{{yourthingId}}' and time ge datetime'2017-07-01T00:00:00' and time lt datetime'{{currentDate}}'",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "98 Reference APIs",
+			"description": "",
+			"item": [
+				{
+					"name": "Read all Thing Types",
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/appiot-mds/Configuration/ThingTypes",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Read all Property Set Types",
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/appiot-mds/Configuration/PropertySetTypes",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Read all Locations",
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/location/Locations",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Read all Things",
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/appiot-mds/Things",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Read all Events",
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/appiot-mds/Events",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Composite Events",
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/appiot-mds/Composite/Events",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Composite Things",
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/appiot-mds/Composite/Things",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Composite Things OData - Metadata",
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/composite-things-odata/CompositeThings/v1/$metadata",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Configuration OData - Read Details of Package",
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/config-package-sap/Package/v1/Packages('{{packageId}}')",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Configuration OData - Read Thing Types",
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/config-thing-sap/ThingConfiguration/v1/ThingTypes",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Composite Things OData - Read Details of a Thing copy",
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/composite-things-odata/CompositeThings/ThingType/v1/{{packagePrefix}}.{{packageId}}:greenhouse_{{number}}/$metadata",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Composite Events OData - Metadata",
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/composite-events-odata/CompositeEvents/v1/$metadata",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "99 Cleanup",
+			"description": "",
+			"item": [
+				{
+					"name": "Fetch csrf token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"postman.setEnvironmentVariable(\"x-csrf-token\", responseHeaders[\"X-Csrf-Token\"]);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/appiot-mds/Things",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "x-csrf-token",
+								"value": "Fetch",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Timeseries Data",
+					"request": {
+						"url": {
+							"raw": "https://{{tenant}}.{{endpoint}}/appiot-mds/Things('{{yourthingId}}')/{{packagePrefix}}.{{packageId}}:greenhouse_{{number}}/status_capability_{{number}}?timerange=89D",
+							"protocol": "https",
+							"host": [
+								"{{tenant}}",
+								"{{endpoint}}"
+							],
+							"path": [
+								"appiot-mds",
+								"Things('{{yourthingId}}')",
+								"{{packagePrefix}}.{{packageId}}:greenhouse_{{number}}",
+								"status_capability_{{number}}"
+							],
+							"query": [
+								{
+									"key": "timerange",
+									"value": "89D",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-csrf-token",
+								"value": "{{x-csrf-token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Event for your thing",
+					"request": {
+						"url": {
+							"raw": "https://{{tenant}}.{{endpoint}}/appiot-mds/Events?$filter=_thingId eq '{{yourthingId}}' and _businessTimeStamp gt 2017-01-24T09:00:00Z",
+							"protocol": "https",
+							"host": [
+								"{{tenant}}",
+								"{{endpoint}}"
+							],
+							"path": [
+								"appiot-mds",
+								"Events"
+							],
+							"query": [
+								{
+									"key": "$filter",
+									"value": "_thingId eq '{{yourthingId}}' and _businessTimeStamp gt 2017-01-24T09:00:00Z",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-csrf-token",
+								"value": "{{x-csrf-token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete the created thing",
+					"request": {
+						"url": "https://{{tenant}}.{{endpoint}}/appiot-mds/Things('{{yourthingId}}')",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-csrf-token",
+								"value": "{{x-csrf-token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

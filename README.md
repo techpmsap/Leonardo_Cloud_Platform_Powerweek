@@ -24,3 +24,8 @@
 - [Exercise\_07 - ML Use Case 1_Pretrained service consumption](Exercise_07/Exercise_07.md)
 - [Exercise\_08 - ML Use Case 2_Retrainable services ](Exercise_08/Exercise_08.md)
 - [Exercise\_09 - ML Use Case 3_Bring your own model](Exercise_09/Exercise_09.md)
+
+
+# USEFUL LINKS
+
+- [Other useful links](Links/Useful_Links.md)

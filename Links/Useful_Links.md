@@ -23,9 +23,9 @@
 - [Overview](https://eaexplorer.hana.ondemand.com/_item.html?id=13741#!/overview)
 - [White Paper and Open SAP Courses](https://www.sap.com/trends/internet-of-things.html)
 - [SAP Cloud Platform IoT Webinar](https://blogs.sap.com/2018/03/01/sap-cloud-platform-internet-of-things-webinar-wrap-up-of-our-kick-off-session/)
-- [Open SAP Course 1](https://open.sap.com/courses/iot1/items/yVlJ9MVujJNBBW8IGMJZX/quiz_submission/6MQDZc5qAuI63IMU30hpaO)
-- [Open SAP Course 2](https://open.sap.com/courses/iot2/items/52svre4os4wEZSofeMEzmy/quiz_submission/new)
-- [Open SAP Course 3](https://open.sap.com/courses/iot3/items/6MlAyyLM9Tdsj4YqttngKZ)
+- [Open SAP Course - How the Internet of Things and Smart Services Will Change Society](https://open.sap.com/courses/iot1)
+- [Open SAP Course - Imagine IoT](https://open.sap.com/courses/iot2)
+- [Open SAP Course - Touch IoT with SAP Leonardo](https://open.sap.com/courses/iot3)
 
 
 ### Machine Learning

@@ -102,13 +102,8 @@ To install Cloud Foundry Command Line Interface (CLI)
 
 1.	Go to Cloud Foundry CLI download page <https://github.com/cloudfoundry/cli#downloads>  
 
-1. Download the installer specific for your platform.  
+1. Download and run the installer specific for your platform.  
 	![](images/19.png)
-
-1. For further instruction, please go to <https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/856119883b8c4c97b6a766cc6a09b48c.html> and choose **Download and Install the Cloud Foundry Command Line Interface**. 
-1. Read the procedure for Windows respectively Mac OS and do the installation.
-	* For Microsoft Windows, download the Windows 64-bit installer and start it
-	* For Mac OS, download the PKG file and start the installer
 
 
 ## <a name="postman"></a> Install Chrome Postman application

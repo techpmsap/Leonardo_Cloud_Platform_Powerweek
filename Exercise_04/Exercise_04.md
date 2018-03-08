@@ -34,6 +34,7 @@ Here below are prerequisites for this exercise.
 1. [Create the Thing Model](#thing-model)
 1. [Setting up Postman to call APIs](#postman)
 1. [Create a Thing](#create-thing)
+1. [Create the device model](#create-device-model)
 1. [Build an App with WebIDE template](#build-app)
 
 
@@ -282,16 +283,26 @@ This step is required to give this thing a location so it can show up on a map i
 
 
 
+### <a name="create-device-model"></a> Create the device model
+1. Go to <https://weather-station.eu10.cp.iot.sap/iot/cockpit/> entering the credentials provided by your instructor
+
+1. 
+	![](images/52.png)
+
+
+
+
+
 -- UNFINISHED ---
+
+
+
+
 ### <a name="build-app"></a> Build an App with WebIDE template
 In this exercise you will build a simple app to allow you to monitor all air quality sensors and drill down to your specific one and examine and learn about the data it generates.
 
 
 https://webidecp-aae9c2f7b.dispatcher.hana.ondemand.com/
-
-air_q_mon_xx
-com.sap.airqmonxx
-Air quality monitor XX
 
 
 ## Summary

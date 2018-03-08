@@ -21,9 +21,9 @@
 
 ### DAY 3
 - [Exercise\_06 - ML Use Case 1 - Pretrained service consumption](Exercise_06/Exercise_06.md)
-- [Exercise\_07 - ML Use Case 1_Pretrained service consumption](Exercise_07/Exercise_07.md)
-- [Exercise\_08 - ML Use Case 2_Retrainable services ](Exercise_08/Exercise_08.md)
-- [Exercise\_09 - ML Use Case 3_Bring your own model](Exercise_09/Exercise_09.md)
+- [Exercise\_07 - ML Foundation in SAP Cloud Foundry - Preparation](Exercise_07/Exercise_07.md)
+- [Exercise\_08 - ML Use Case 2 - Retrainable services](Exercise_08/Exercise_08.md)
+- [Exercise\_09 - ML Use Case 3 - Bring your own model](Exercise_09/Exercise_09.md)
 
 
 # USEFUL LINKS

@@ -7,7 +7,9 @@
 ## Description
 In this exercise, you’ll learn how 
 
-* to consume pretrained SAP Leonardo Machine Learning services from SAP API Business Hub sandbox in a SAPUI5 application
+* to import a project into SAP Web IDE Full-Stack
+* to setup the development environment
+* to use SAP Leonardo ML Image Classification with SAPUI5
 
 ## Target group
 
@@ -16,8 +18,8 @@ In this exercise, you’ll learn how
 
 
 ## Goal
-
-In this exercise you can experience how easy it is to use the available SAP Leonardo Machine Learning foundation services on SAP API Business Hub. The models are already pre-trained and can be tried out on the web page. You will learn how to quickly integrate the Image and Product Image Classification SAP Leonardo Machine Learning Functional Services published from the SAP API Business Hub sandbox in a SAPUI5 application.
+The goal of this exercise is to import an already preconfigured project in SAP Web IDE Full-Stack, which will be used in the next exercises.
+You will learn how to quickly integrate the Image and Product Image Classification SAP Leonardo Machine Learning Functional Services published from the SAP API Business Hub sandbox in a SAPUI5 application.
 
 
 ## Prerequisites
@@ -26,8 +28,7 @@ Here below are prerequisites for this exercise.
 
 * A trial account on the SAP Cloud Platform. You can get one by registering here <https://account.hanatrial.ondemand.com>
 * Previous exercise
-* Download the files [Topic_Detection.zip](files/Topic_Detection.zip) and [test_images.zip](test_images.zip)
-and save them in a proper location: they will be used later in this document
+* Download the following file from here [MLFSAPUI5\_Project\_Exercise.zip](files/MLFSAPUI5_Project_Exercise.zip) and save it in a proper location: it will be used later in this document
 
 
 ## Steps

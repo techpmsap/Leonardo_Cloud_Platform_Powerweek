@@ -370,7 +370,7 @@ This section gives brief overview of how to work with device commands in MQTT ne
 1. In the history you should get the information that a new subscription has been created  
 	![](images/58.png)
 
-1.	Open the Internet of Things API Documentation at the link <https://\<host_name\>/IoT/core/api/v1/doc/index.html> (where **\<host\_name\>** is your IoT cockpit hostname) and choose **Authorize**  
+1.	Open the Internet of Things API Documentation at the link <https://\<host_name\>/iot/core/api/v1/doc/index.html> (where **\<host\_name\>** is your IoT cockpit hostname) and choose **Authorize**  
 	![](images/59.png)
 
 1.	Enter your credentials and click on **Authorize**  

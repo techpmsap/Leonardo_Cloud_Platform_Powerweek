@@ -339,7 +339,7 @@ This section explains various ways we can consume and visualize the measurements
 1.	Open Chrome Postman Client  
 	![](images/51.png)
 
-1. Select the GET request type and enter the URL `https://<HOST_NAME>:443/IoT/core/api/v1/devices/<Device_ID>/measures` where **\<HOST\_NAME\>** must be replaced with the host name you can get from the cockpit URL and **\<Device\_ID\>** with the ID you can get by selecting your **Paho\_Client\_XX** device in the IoT Cockpit  
+1. Select the GET request type and enter the URL `https://<HOST_NAME>:443/iot/core/api/v1/devices/<Device_ID>/measures` where **\<HOST\_NAME\>** must be replaced with the host name you can get from the cockpit URL and **\<Device\_ID\>** with the ID you can get by selecting your **Paho\_Client\_XX** device in the IoT Cockpit  
 	![](images/52.png)
 
 1. Click on the **Authorization** tab. Select **Basic Auth** as Type, enter your SAP IoT Cockpit credentials and click on **Update Request**  

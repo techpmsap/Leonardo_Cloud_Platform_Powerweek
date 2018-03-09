@@ -192,8 +192,7 @@ Centralized Device data model provides the schema of device related configuratio
 Each device exchange data with a specific protocol (for example: MQTT in this exercise).  Each device corresponds to 1 unique physical node. We need to create physical node that corresponds to a physical device. In the following section, it is described how to create a Device for the MQTT network. Also we onboard all the sensors and Actuators for the Device.
 
 1.	Log on to the IoT Cockpit of SAP Cloud Platform Internet of Thing with the tenant user credentials  
-	![](images/18.png)
-
+	
 1.	Use the main menu to navigate to the **Device Management -> Devices** section and click on the "**+**" sign to start the device creation process
 
 	>NOTE: As an alternative, devices and sensors can also be created via APIs. In this exercises, we will create it via UI cockpit  

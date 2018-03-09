@@ -55,8 +55,8 @@ The SAP Cloud Platform Internet of Things Service enables customers and partners
 ### <a name="creating-device-data-model"></a> Creating device data model
 Centralized Device data model provides the schema of device related configurations including the data fields that will be exchanged. Default template is provided and can be downloaded from the SAP Cloud Platform Internet of Things services cockpit. If you have any deviations or additions, a new sensor type can be added to the default central data model. In the below steps, we will extend this default central device data model with the new fields "Temperature and Light" that we will be getting from the device simulator. In this section, you will create few capabilities (measures and commands). A capability can be reused since it can be assigned to multiple sensor types: each capability can have one or many properties.
 
-1.	Open the browser and navigate to the IoT Service Cockpit  
-	![](images/02.png)
+1.	Open the browser and navigate to the IoT Service Cockpit URL provided by the instructor  
+
 1.	Open the **Internet of Things API Documentation**  
 	![](images/03.png)
 1. Choose **Authorize**

@@ -339,7 +339,7 @@ This section explains various ways we can consume and visualize the measurements
 1.	Open Chrome Postman Client  
 	![](images/51.png)
 
-1. Select the GET request type and enter the URL `https://<HOST_NAME>:443/IoT/core/api/v1/devices/<Device_ID>/measures` where **\<HOST\_NAME\>** must be replaced with the host name you can get from the cockpit URL and **\<Device\_ID\>** with the ID you can get by selecting your **Paho\_Client\_XX** device in the IoT Cockpit  
+1. Select the GET request type and enter the URL `https://<HOST_NAME>:443/iot/core/api/v1/devices/<Device_ID>/measures` where **\<HOST\_NAME\>** must be replaced with the host name you can get from the cockpit URL and **\<Device\_ID\>** with the ID you can get by selecting your **Paho\_Client\_XX** device in the IoT Cockpit  
 	![](images/52.png)
 
 1. Click on the **Authorization** tab. Select **Basic Auth** as Type, enter your SAP IoT Cockpit credentials and click on **Update Request**  
@@ -370,7 +370,7 @@ This section gives brief overview of how to work with device commands in MQTT ne
 1. In the history you should get the information that a new subscription has been created  
 	![](images/58.png)
 
-1.	Open the Internet of Things API Documentation at the link <https://\<host_name\>/IoT/core/api/v1/doc/index.html> (where **\<host\_name\>** is your IoT cockpit hostname) and choose **Authorize**  
+1.	Open the Internet of Things API Documentation at the link <https://\<host_name\>/iot/core/api/v1/doc/index.html> (where **\<host\_name\>** is your IoT cockpit hostname) and choose **Authorize**  
 	![](images/59.png)
 
 1.	Enter your credentials and click on **Authorize**  

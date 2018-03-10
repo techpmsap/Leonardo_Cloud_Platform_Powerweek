@@ -11,6 +11,10 @@
 - [Enterprise Architecture Explorer](https://eaexplorer.hana.ondemand.com/_item.html?id=10613#!/facet/170)
 - [SAP Road Maps](https://www.sap.com/registration/protected/default-overlay.html?gated_asset_path=%2Fdocuments%2F2017%2F06%2Fcad48d29-c37c-0010-82c7-eda71af511fa.gate.html#pdf-asset=cad48d29-c37c-0010-82c7-eda71af511fa&page=1)
 - [SAP Cloud Platform regions and service portfolio](https://help.sap.com/doc/aa1ccd10da6c4337aa737df2ead1855b/Cloud/en-US/3b642f68227b4b1398d2ce1a5351389a.html)
+- [Learning journey](https://help.sap.com/doc/0c3db190da2c4866a1f2906763d4f59a/Cloud/en-US/317030086f83418a94dfe94173b46584.html)
+- [Blue Prints](https://www.sap.com/developer/blueprints.html)
+- [Solution Diagrams](https://wiki.scn.sap.com/wiki/pages/viewpage.action?pageId=477829554)
+- [Open SAP Course](https://open.sap.com/courses/cp4/items/37ykvKLTSbwObqiwZ1wQxh)
 - [FAQ](https://wiki.scn.sap.com/wiki/display/SAPHCP/SAP+Cloud+Platform+FAQs)
 
 ### SAP Leonardo

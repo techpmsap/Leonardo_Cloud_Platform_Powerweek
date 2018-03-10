@@ -16,7 +16,7 @@
 ### DAY 2
 
 - [Exercise\_03 - Maintenance Scenario using IoT to extend LoB](Exercise_03/Exercise_03.md)
-- [Exercise\_04 - IoT Application Enablement - TO BE CONTINUED](Exercise_04/Exercise_04.md)
+- [Exercise\_04 - IoT Application Enablement](Exercise_04/Exercise_04.md)
 - [Exercise\_05 - ML APIs Exploration](Exercise_05/Exercise_05.md)
 
 ### DAY 3

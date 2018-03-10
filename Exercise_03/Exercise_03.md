@@ -57,7 +57,7 @@ Here below are prerequisites for this exercise.
 ### <a name="introduction"></a> Introduction
 The SAP Cloud Platform Internet of Things Service enables customers and partners to develop, customize, and operate IoT business applications in the cloud. IoT Services provides Lifecycle management at scale for IoT devices from onboarding to decommissioning. It also provides a way to securely connect to remote devices over a broad variety of IoT protocols. It provides gateway Edge which provides one-premise IoT edge processing and also gateway cloud which does centralized cloud based processing.
 
-The IoT cockpit is the user interface of the solution and provides access to various functions. It is the main interface for users to interact with the Internet of Things core service. It can be used creating user & tenants. Creating device data model, Device Onboarding and adding new networks etc. it can also be used to deploy interceptors, retrieve network logs, visualize the data which is being ingested via IOT devices/sensors.  
+The IoT cockpit is the user interface of the solution and provides access to various functions. It is the main interface for users to interact with the Internet of Things core service. It can be used creating user & tenants. Creating device data model, Device Onboarding and adding new networks etc. it can also be used to deploy interceptors, retrieve network logs, visualize the data which is being ingested via IoT devices/sensors.  
 	![](images/001.png)
 	
 Before moving forward let's check up if all the prerequisites are in place for the completion of the entire exercise.
@@ -118,7 +118,7 @@ Before moving forward let's check up if all the prerequisites are in place for t
 1.	This will open the configuration URL document, which you will need to complete the exercise  
 	![](images/013.png)
 	
-1.	Take the **IOT Service Cockpit URL** and paste it in a new browser window  
+1.	Take the **IoT Service Cockpit URL** and paste it in a new browser window  
 	![](images/014.png)
 
 1. Congratulations! Prerequisites for the exercise have been verified.  	
@@ -253,7 +253,7 @@ At this point we need in some way to install the certificate we have downloaded 
 1. Click on **Postman**  
 	![](images/044.png)
 
-1. Choose **POST** as new request type and enter as URL the line `https://<host_name>/iot/gateway/rest/measures/11:22:33:XX` replacing **\<host\_name\>** with the host name of your IOT service and **XX** with your group number  
+1. Choose **POST** as new request type and enter as URL the line `https://<host_name>/IoT/gateway/rest/measures/11:22:33:XX` replacing **\<host\_name\>** with the host name of your IoT service and **XX** with your group number  
 	![](images/045.png)
 
 1. Choose **NoAuth** as **Authorization Type**  
@@ -276,7 +276,7 @@ At this point we need in some way to install the certificate we have downloaded 
 
 1. Repeat the step by changing (increasing or decreasing) the temperature value and sending the request again  
 
-1. Congratulations! You have successfully sent some data to the IOT service using Postman REST Client.
+1. Congratulations! You have successfully sent some data to the IoT service using Postman REST Client.
 
 
 
@@ -309,7 +309,7 @@ This section explains various ways we can consume and visualize the measurements
 1. Reopen Chrome browser and go again to the <chrome://apps> link. Open Postman and click on the **+** sign after the last tab, to open a new tab  
 	![](images/056.png)
 
-1. Select GET as the request type and enter the URL `https://<host_name>/iot/core/api/v1/devices/<device_ID>/measures` where **\<host\_name\>** is the host name of your IOT Service and **\<device\_ID\>** can be read in the device page under the device name
+1. Select GET as the request type and enter the URL `https://<host_name>/IoT/core/api/v1/devices/<device_ID>/measures` where **\<host\_name\>** is the host name of your IoT Service and **\<device\_ID\>** can be read in the device page under the device name
 
 	>NOTE: Please note down the device\_ID and the host\_name used here, since this information will be required at a later part of the exercise  
 
@@ -516,7 +516,7 @@ In this part, you will discover the CPL265 session Integration content from SAP 
 1. Make sure you are in your package and click on the **Configure** button  
 	![](images/094.png)
 
-1. Select **IOTS4** in the Receiver drop down list and configure the **address** and the **query**, taking them from the Integration Service document. Remember to replace the **\<device\_ID\>** string with the ID of the device you created earlier. This ID can be read from the Device's details page in the IoT Service cockpit. Keep **HTTP** as Adapter Type and **IOTS4_USER** as Credential Name. Once done click on **Save**  
+1. Select **IoTS4** in the Receiver drop down list and configure the **address** and the **query**, taking them from the Integration Service document. Remember to replace the **\<device\_ID\>** string with the ID of the device you created earlier. This ID can be read from the Device's details page in the IoT Service cockpit. Keep **HTTP** as Adapter Type and **IoTS4_USER** as Credential Name. Once done click on **Save**  
 	![](images/095.png)
 
 1. Now select **RuleEngine** in the Receiver drop down list. This needs to be set to the URL you can read in the Integration Service document under the **Receiver: RuleEngine** section. Even here, remember to use your **CPL265ParticipantXX** account, where **XX** is your group number. Leave all other parameters as by default and click **Save**  
@@ -594,7 +594,7 @@ In this section, we will confirm the successful scenario completion. This is don
 1. Open Postman  
 	![](images/115.png)
 
-1. Locate the old tab you used to send some data to the IOT Service and increase the temperature to 50; then click on **Send**  
+1. Locate the old tab you used to send some data to the IoT Service and increase the temperature to 50; then click on **Send**  
 	![](images/116.png)
 
 1. Go back to the Fiori Launchpad. Your My Inbox application should start receiving messages. Click on the tile to open the application  
@@ -639,7 +639,7 @@ You have completed the exercise!
  
 You are now able to: 
 
-* onboard a device with IOT Gateway Cloud using REST protocol
+* onboard a device with IoT Gateway Cloud using REST protocol
 * send data with a REST client
 * work with SAP Cloud Platform Workflow service
 * work with SAP Cloud Platform Business Rules service

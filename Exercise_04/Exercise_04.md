@@ -1,6 +1,6 @@
 <table width=100% border=>
 <tr><td colspan=2><h1>EXERCISE 04 - IoT Application Enablement</h1></td></tr>
-<tr><td><h3>SAP Partner Workshop</h3></td><td><h1><img src="zimages/clock.png"> &nbsp;90 min</h1></td></tr>
+<tr><td><h3>SAP Partner Workshop</h3></td><td><h1><img src="images/clock.png"> &nbsp;90 min</h1></td></tr>
 </table>
 
 

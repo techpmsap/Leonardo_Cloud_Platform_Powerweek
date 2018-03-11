@@ -50,6 +50,7 @@ Here below are prerequisites for this exercise.
 1. [Generate the device certificate](#generate-certificate)
 1. [Install the certificate](install-certificate) 
 1. [Send some data using Postman and analyze sent data](#send-data-with-postman)
+1. [OPTIONAL - Build a freestyle SAPUI5 Application](#freestyle-app)
 
 
 ### <a name="create-package"></a> Create your own Package for Greenhouses
@@ -143,7 +144,7 @@ Here below are prerequisites for this exercise.
 1. In the Status Values section click on the **+** symbol  
 	![](images/016.png)
 
-1. Add the property **door_closed** (it will have automatically "boolean" as type) and click **OK**  
+1. Add the property **door\_closed** (it will have automatically "boolean" as type) and click **OK**  
 	![](images/017.png)
 
 1. At the end you should have the following situation: click on the **Save** button and you should receive a message "Property set was saved"  
@@ -214,7 +215,7 @@ Here below are prerequisites for this exercise.
 1. All the propeties you defined earlier are automatically added  
 	![](images/032.png)
 
-1. Take an image for your greenhouse by searching it on the web or by right clicking on this [small_greenhouse.jpg](files/small_greenhouse.jpg) link and saving the image on your machine
+1. Take an image for your greenhouse by searching it on the web or by right clicking on this [small\_greenhouse.jpg](files/small_greenhouse.jpg) link and saving the image on your machine
 
 1. Click on the **Image** tab and press "**+**" to add a new image  
 	![](images/033.png)
@@ -364,7 +365,7 @@ In order to perform this step you need to have Postman Interceptor installed in 
 1. Click on **ADD TO CHROME**  
 	![](images/061.png)
 
-1. Download the zip file [postman\_json_files.zip](files/postman_json_files.zip) and extract it in a proper location on your machine
+1. Download the zip file [postman\_json\_files.zip](files/postman_json_files.zip) and extract it in a proper location on your machine
 
 1.	Open Postman from <chrome://apps/>  
 	![](images/062.png)
@@ -372,7 +373,7 @@ In order to perform this step you need to have Postman Interceptor installed in 
 1.	Click on **Import**  
 	![](images/063.png)
 
-1.	Import the two json files you have extracted from the *postman\_json_files.zip* file  
+1.	Import the two json files you have extracted from the *postman\_json\_files.zip* file  
 	![](images/064.png)
 	 
 1. You should receive a couple of confirmation messages that the import was successful  
@@ -436,7 +437,7 @@ In order to perform this step you need to have Postman Interceptor installed in 
 1. Go to the **Thing Onboarding -> Update Thing (incl. location)**, delete the current **body** content and paste the one you have in memory, copied in the previous step  
 	![](images/082.png)
 
-1. Just above the "_objectGroup" property, add the line `"_location":"<location_ID>",` where **\<location\_ID\>** must be replaced by the location ID you got in the headers when you created the location (you should have noted down this ID already). Then click **Send** and check that you have received a "**201 Created**" message  
+1. Just above the "\_objectGroup" property, add the line `"_location":"<location_ID>",` where **\<location\_ID\>** must be replaced by the location ID you got in the headers when you created the location (you should have noted down this ID already). Then click **Send** and check that you have received a "**201 Created**" message  
 	![](images/083.png)
 
 1. Go to the **Thing Onboarding -> Read the created thing**, click on **Send** and check that the thing has been updates with the new **\_location** property  
@@ -474,7 +475,7 @@ In this section you will build a simple SAPUI5 app which allows you to monitor y
 
 	| Parameter | Value|
 	| --- | --- |
-	| Package Name| greenhouse_xx |
+	| Package Name| greenhouse\_xx |
 	| Namespace | com.greenhousexx |
 	| Title | Small Greenhouse Application |
 
@@ -533,7 +534,7 @@ Before we can send some data to the device we need to establish a connection wit
 1. Go to your IoT Service cockpit and login with your credentials  
 	![](images/107.png)
 
-1. Select Devices, type "sg" in the search box, select your device "sg_climate_dev_xx" (where **xx** is your group number), select the "Certificate" tab and click on **Generate Certificate**  
+1. Select Devices, type "sg" in the search box, select your device **sg\_climate\_dev\_xx** (where **xx** is your group number), select the "Certificate" tab and click on **Generate Certificate**  
 	![](images/108.png)
 	
 1. Select "**p12**" as Certificate Type and click **Generate**. The certificate will be generated and you will receive a prompt to save the file on your disk. Please keep in mind where you put it, since it will be required in the next section  
@@ -641,8 +642,7 @@ However before we can proceed, we need to gather some information from the IoT S
 	}
 	```
 	
-	Of course, you need to replace <device_alternate_ID>,<capability_alternate_ID> and <sensor_alternate_ID> with the values gathered earlier.
-	When finished press the **Send** button  
+	Of course, you need to replace **\<device\_alternate\_ID\>**, **\<capability\_alternate\_ID\>** and **\<sensor\_alternate\_ID\>** with the values gathered earlier. When finished press the **Send** button  
 	![](images/133.png)
 
 1. Select the right certificate (the right one should be the one with the same your Device Alternate ID) and click **OK**  
@@ -666,12 +666,94 @@ However before we can proceed, we need to gather some information from the IoT S
 1. You can also resize the time range using the slide control at the bottom of the page  
 	![](images/140.png)
 
-1. If you want you can now enable also the other measures. Notice the flag "door_closed" shown as a filled blue bar  
+1. If you want you can now enable also the other measures. Notice the flag **door\_closed** shown as a filled blue bar  
 	![](images/141.png)
 
 1. Congratulations! You have successfully sent some sensor data with Postman and analyzed them with the SAPUI5 application in SAP Web IDE.
 
 
+
+### <a name="freestyle-app"></a> OPTIONAL - Build a freestyle SAPUI5 Application
+This is an OPTIONAL part of the exercise. There is another way to create an IoT application with SAP Web IDE, which is to use the Freestyle IoT Application template. With this template you are free to adjust the application layout and behaviour as you wish using some built-in components. 
+
+1. Open SAP Web IDE and from the main menu select **File -> New -> Project from Template**  
+	![](images/200.png)
+
+1. Browse for the **Internet Of Things** Category and select the **Freestyle IoT Application** template; then click **Next**  
+	![](images/201.png)
+
+1. Enter the following information and click **Next**
+
+	| Parameter | Value|
+	| --- | --- |
+	| Package Name| greenhouse\_fs\_xx |
+	| Namespace | com.greenhouse.fsxx |
+	| Title | Small Greenhouse Freestyle Application |
+
+	(remember to replace **xx** with your group number)  
+	![](images/202.png)
+
+1. Select the Service "**IOTAS-ADVANCEDLIST-THING-ODATA**" and browse for the **Property Sets**  
+	![](images/203.png)
+
+1. Open the drop down list  
+	![](images/204.png)
+
+1. Enter "pw.greenhouse.pk" in the search box and select the Thing Type you have created earlier. You need to choose the one with your group number. Then click **OK**  
+	![](images/205.png)
+
+1. Select all the common property sets and click **OK**  
+	![](images/206.png)
+
+1. Once you have specified Service and Property Sets click **Next**  
+	![](images/207.png)
+
+1. Select the **3 Column Layout** and click **Finish**  
+	![](images/208.png)
+
+1. You will get the Freestyle Application Storyboard. Double click on the tile in the middle of the screen  
+	![](images/209.png)
+
+1. The layout editor appears  
+	![](images/210.png)
+
+1. From the left-hand toolbar drag & drop on the 3 columns the following components in sequence: **ThingList**, **Gauge** and **SensorChart**  
+	![](images/211.png)
+
+1. Select the first column and from the **Events** tab on the right-end side click on the **Row Select** drop down list, choosing **Wire to Action**  
+	![](images/212.png)
+
+1. Enable the **doReload** action for both the **IoTGauge** and the **IoTChart** and click **OK**  
+	![](images/213.png)
+
+1. At the end you should have this screen  
+	![](images/214.png)
+
+1. Now select the **Gauge**, go to the **Properties** tab and click on the **Entity Set** drop down list  
+	![](images/215.png)
+
+1. Choose **Define dummy entity set for the selected control...** and select **/Things** as the Entity Set; then click **OK**  
+	![](images/216.png)
+
+1. Now that you have defined **/Things** as the Entity Set, click on the **Value** drop down list  
+	![](images/217.png)
+
+1. Double click on the **sg\_climate\_ps\_xx.temperature (double)** property, so that it will be added to the right side, then click **OK**  
+	![](images/218.png)
+
+1. The application is ready to be tested. Click on the **Run** button on the top toolbar  
+	![](images/219.png)
+
+1. The application is executed. Select the Thing on the left column and click on the **...** button on top of the last column. Choose a small interval like **12 Hours** or **1 Hour** (this will enable you to see data you have sent some minutes ago) and click on **Measured Values**  
+	![](images/220.png)
+
+1. Select a couple of properties like **temperature** and **humidity** and click **OK**  
+	![](images/221.png)
+
+1. Data are displayed on the third column  
+	![](images/222.png)
+
+1. Congratulations! You have successfully created a SAPUI5 IoT app using the Freestyle IoT Application template.
 
 
 ## Summary

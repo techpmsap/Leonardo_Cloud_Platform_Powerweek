@@ -51,6 +51,8 @@ Here below are prerequisites for this exercise.
 1. [Install the certificate](install-certificate) 
 1. [Send some data using Postman and analyze sent data](#send-data-with-postman)
 1. [OPTIONAL - Build a freestyle SAPUI5 Application](#freestyle-app)
+1. [OPTIONAL - Build a Python script to send some data](#python-script)
+
 
 
 ### <a name="create-package"></a> Create your own Package for Greenhouses
@@ -754,6 +756,117 @@ This is an OPTIONAL part of the exercise. There is another way to create an IoT 
 	![](images/222.png)
 
 1. Congratulations! You have successfully created a SAPUI5 IoT app using the Freestyle IoT Application template.
+
+
+### <a name="python-script"></a> OPTIONAL - Build a Python script to send some data
+This is an OPTIONAL part of the exercise. In case for example you want to send data from your Raspberry PI, you may want to build a Python script which reads the GPIOs values sending them to the IoT service. In this example, we are going to send some random data, but it's easy to understand how the same script can be adapted to work with a real device 
+
+
+1. Create a new folder on your machine
+
+1. Copy to this folder the **sg\_climate\_dev\_xx-device\_certificate.p12** certificate you have already imported in your system. We need to convert the certificate, splitting it in two parts: a PEM and a KEY files.
+
+1. Open terminal and go to this folder  
+	![](images/150.png)
+
+1. Run the command `openssl pkcs12 -in <certificate_name>.p12 -nokeys -out certificate.pem`, where **\<certificate\_name\>** is the name of the certificate you have downloaded for your device, to convert the certificate file from p12 to PEM. You will be requested to enter the secret key received when you generated the certificate  
+	![](images/151.png)
+
+1. Run the command `openssl pkcs12 -in <certificate_name>.p12 -nocerts -out privkey.pem`, where **\<certificate\_name\>** is the name of the certificate you have downloaded for your device, to generate the private key with passphrase: first enter the secret key received when you generated the certificate and then an arbitrary PEM password (say: 1234)
+	![](images/152.png)
+
+1. Run the command `openssl rsa -in privkey.pem -out certificate.key` to remove the passphrase from the key since it's not supported in the Python "requests" library. You will be requested to re-enter the password specified at the previous step (i.e. 1234)  
+	![](images/153.png)
+
+1. In your folder you should have now two files: a certificate "*certificate.pem*" and a key "*certificate.key*". The "*privkey.pem*" can be deleted because no longer needed  
+	![](images/154.png)
+
+1. Inside this folder create a new file named *send\_data.py* with the following content
+
+	```py
+	import sys
+	import requests
+	import json
+	import time
+	import math
+	import random
+	
+	# replace these variables
+	deviceAlternateId = '<your_device_alternate_ID>'               # the device Alternate ID
+	sensorAlternateId = '<your_sensor_alternate_ID>'               # the sensor Alternate ID
+	capabilityAlternateId = '<your_capability_alternate_ID>'       # the capability Alternate ID
+	tenant = 'https://<your_host_name>/iot/gateway/rest/measures/' # the IoT Service Host Name
+	
+	postAddress = (tenant + deviceAlternateId)
+	print ('Posting to:', postAddress)
+	
+	# Time intervall for polling the sensor data in seconds
+	timeIntervall = 5
+	
+	# Number of iterations
+	iterations = 20
+	
+	
+	for x in range (0, iterations):
+	
+	    try:
+	        print("")
+	        print("============================================")
+	        print("Reading sensor data ...")
+	  
+	
+	        humidity = random.randint(10,99)
+	        temperature = random.randint(0,40)
+	        light = random.randint(1,500)
+	
+	        if math.isnan(humidity) == False and math.isnan(temperature) == False:
+	            valueHumidity = humidity
+	            valueTemp = temperature
+	            valueTempF = temperature * 1.8 + 32
+	            print("Temperature value = %d" %valueTemp, "°C", "/ %d°F" %valueTempF)
+	            print("Hummidity value = %d" %valueHumidity, "%")
+	
+	
+	        valueLight = round(light,2)
+	        print("Light value = %f" %valueLight, "CD")
+	
+	            
+	        bodyJson =  {
+	        			"capabilityAlternateId":capabilityAlternateId,
+	        			"sensorAlternateId":sensorAlternateId,
+	                    "measures":[{"door_closed":"true","temperature":valueTemp,"humidity":valueHumidity,"light":valueLight}]
+	                    }
+	
+	        data = json.dumps(bodyJson)
+	        headers = {'content-type': 'application/json'}
+	        r = requests.post(postAddress,data=data, headers = headers,cert=('certificate.pem', 'certificate.key'), timeout=5)
+	        responseCode = r.status_code
+	        print (str(bodyJson))
+	        print ("==> HTTP Response: %d" %responseCode)
+	        
+	        # wait timeIntervall [s] before reading the sensor values again
+	        time.sleep(timeIntervall)
+	        
+	    except IOError:
+	        print ("Error")
+	```
+	![](images/155.png)
+
+1. In this code, replace the following variables with your values and save the file
+	- **\<your\_device\_alternate\_ID\>** with your device Alternate Id
+	- **\<your\_sensor\_alternate\_ID\>** with your sensor Alternate Id
+	- **\<your\_capability\_alternate\_ID\>** with your capability Alternate Id
+	- in the tenant URL, replace **\<host\_name\>** with the one provided by your instructor  
+	![](images/156.png)
+
+1. If you want you can also adjust two other parameters like the **timeInterval** which is set to 5 seconds and the numeber of **iterations** which is set to 20. The first one is the interval between each send command and the second is how many send commands you want to issue  
+
+1. From the Terminal window, run the command `python send_data.py`. For each iteration you should receive a **HTTP Response** code of **200**  
+	![](images/157.png)
+
+1. If you look now at the analysis page of your application you should see the values you just sent.  
+	![](images/158.png)
+
 
 
 ## Summary

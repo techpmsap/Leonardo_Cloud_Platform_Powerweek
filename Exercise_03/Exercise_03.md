@@ -62,12 +62,14 @@ The IoT cockpit is the user interface of the solution and provides access to var
 	
 Before moving forward let's check up if all the prerequisites are in place for the completion of the entire exercise.
 
-1. Download the [Iflowgenerator.zip](files/Iflowgenerator.zip) file
+1. Download the [Exercise_03_Support_Files.zip](files/Exercise_03_Support_Files.zip) file
 
-1. Extract the content of this file in a proper location on your machine  
-	![](images/002.png)
+1. Extract the content of this file in a proper location on your machine using the password provided my your instructor 
+	![](images/002.png) 
+	
+1. You will find a file named *Iflowgenerator.zip*: extract it as well in a proper directory and open this folder
 
-1. Open the config.propeties file with your favourite text editor, change the XX value to your group number and save the file  
+1. Open the *config.propeties* file with your favourite text editor, change the XX value to your group number and save the file  
 	![](images/003.png)
 
 1. Open a terminal window and navigate to the folder where you have extracted the Iflowgenerator
@@ -84,42 +86,44 @@ Before moving forward let's check up if all the prerequisites are in place for t
 	![](images/005.png)
 
 
-1.	Open Chrome browser and select the SAP Cloud Platform Integration tenant assigned to you, e. g.:
-	
-	<https://rktw002-tmn.avt.eu1.hana.ondemand.com/itspaces>
-	
-	or
-	
-	<https://rktw003-tmn.avt.eu1.hana.ondemand.com/itspaces>
-
-	In general, 2 tenants are available, in one of our data centers in Europe. The session instructors will provide you with the information which tenant will be used in your session
+1.	Open Chrome browser and enter the URL of the SAP Cloud Platform Integration tenant assigned to you. The session instructors will provide you with the information which tenant will be used in your session.
 
 1. Logon to the tenant with the credentials provided by the session instructors  
 	![](images/006.png)
 	
-1.	On the Discover page of the SAP Cloud Platform Integration tenant, browse the **Design** space and Select the package **CPL265-Maintenance Scenario with SAP Cloud Platform Integration**  
-	![](images/007.png)
+1.	On the Discover page of the SAP Cloud Platform Integration tenant, browse the **Design** space.  
+	![](images/006a.png) 
 
-1. Select the **Artifacts** tab and click on **Edit** on the top right corner  
-	![](images/008.png)
+1.	Here, you will create an Integration Package to store your iFlows for the Exercise. Click on ***Create***.  
+	![](images/006b.png) 
 
-1.	Click on **Add -> Integration Flow**  
-	![](images/009.png)
+1. Enter details. **NOTE:** Replace XX with the group number provided by the instructor
+
+	|Field|Value|
+	|---------|-----|
+	|Name|SAP Cloud Platform, Integration Service Workshop 2018 (Exercises) Group_XX|
+	|Short Description |CPL265-Maintenance Scenario with SAP Cloud Platform Integration|
+	|Version |1.0.0|
+	|Vendor |SAP| 
+	![](images/006c.png)
+	
+1. Save.  
+	![](images/006d.png)
+
+1. Select the **Artifacts** tab and click on **Add** to drop down the selection list. Select **Integration Flow**.
+	![](images/007a.png)
 
 1.	Click on the **Upload** option, browse the **CPL265-IntegrationFlowXX.zip** file generated with the prvious tool, enter the name "**CPL265-IntegrationFlowXX**" for the artifact (XX must be replaced by your group number), enter a description like "**Maintenance scenario**" and click on **OK**  
 	![](images/010.png)
 
 1.	The artifact is uploaded. Click on **Save**  
-	![](images/011.png)
+	![](images/011.png) 
 
-1.	Select the **Documents** tab and click on the **Configuration URL's EU Data Center** document  
-	![](images/012.png)
-
-1.	This will open the configuration URL document, which you will need to complete the exercise  
-	![](images/013.png)
+1.	Open the configuration URL document, which you will need to complete the exercise. Documents are available inside **Iflowgenerator** folder. Please use the file (URLS_rktw002.TXT or URLS_rktw003.TXT) assignement to you by the instructor.
 	
 1.	Take the **IoT Service Cockpit URL** and paste it in a new browser window  
-	![](images/014.png)
+	![](images/012.png)
+	![](images/014.png) 
 
 1. Congratulations! Prerequisites for the exercise have been verified.  	
 

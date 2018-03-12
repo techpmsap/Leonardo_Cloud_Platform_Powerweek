@@ -445,7 +445,10 @@ In order to perform this step you need to have Postman Interceptor installed in 
 1. Go to the **Thing Onboarding -> Read the created thing**, click on **Send** and check that the thing has been updates with the new **\_location** property  
 	![](images/084.png)
 
-1. The same information can be now read in the IoT Application Enablement cockpit  
+1. The same information can be now read in the IoT Application Enablement cockpit
+	
+	>NOTE: Refresh the browser if you don't see the Location information.
+	 
 	![](images/085.png)
 	
 1. Congratulations! You have successfully updated your Thing by using Postman REST Client.
@@ -668,9 +671,6 @@ However before we can proceed, we need to gather some information from the IoT S
 1. You can also resize the time range using the slide control at the bottom of the page  
 	![](images/140.png)
 
-1. If you want you can now enable also the other measures. Notice the flag **door\_closed** shown as a filled blue bar  
-	![](images/141.png)
-
 1. Congratulations! You have successfully sent some sensor data with Postman and analyzed them with the SAPUI5 application in SAP Web IDE.
 
 
@@ -823,7 +823,7 @@ This is an OPTIONAL part of the exercise. In case for example you want to send d
 	            valueHumidity = humidity
 	            valueTemp = temperature
 	            valueTempF = temperature * 1.8 + 32
-	            print("Temperature value = %d" %valueTemp, "°C", "/ %d°F" %valueTempF)
+	            print("Temperature value = %d" %valueTemp, "C", "/ %dF" %valueTempF)
 	            print("Hummidity value = %d" %valueHumidity, "%")
 	
 	

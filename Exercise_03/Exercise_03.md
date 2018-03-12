@@ -62,7 +62,7 @@ The IoT cockpit is the user interface of the solution and provides access to var
 	
 Before moving forward let's check up if all the prerequisites are in place for the completion of the entire exercise.
 
-1. Download the [Exercise_03_Support_Files.zip](files/Exercise_03_Support_Files.zip) file
+1. Download the [Exercise\_03\_Support\_Files.zip](files/Exercise_03_Support_Files.zip) file
 
 1. Extract the content of this file in a proper location on your machine using the password provided my your instructor 
 	![](images/002.png) 
@@ -101,7 +101,7 @@ Before moving forward let's check up if all the prerequisites are in place for t
 
 	|Field|Value|
 	|---------|-----|
-	|Name|SAP Cloud Platform, Integration Service Workshop 2018 (Exercises) Group_XX|
+	|Name|SAP Cloud Platform, Integration Service Workshop 2018 (Exercises) Group\_XX|
 	|Short Description |CPL265-Maintenance Scenario with SAP Cloud Platform Integration|
 	|Version |1.0.0|
 	|Vendor |SAP| 
@@ -113,13 +113,13 @@ Before moving forward let's check up if all the prerequisites are in place for t
 1. Select the **Artifacts** tab and click on **Add** to drop down the selection list. Select **Integration Flow**.
 	![](images/007a.png)
 
-1.	Click on the **Upload** option, browse the **CPL265-IntegrationFlowXX.zip** file generated with the prvious tool, enter the name "**CPL265-IntegrationFlowXX**" for the artifact (XX must be replaced by your group number), enter a description like "**Maintenance scenario**" and click on **OK**  
+1.	Click on the **Upload** option, browse the **CPL265-IntegrationFlowXX.zip** file generated with the previous tool, enter the name "**CPL265-IntegrationFlowXX**" for the artifact (**XX** must be replaced by your group number), enter a description like "**Maintenance scenario**" and click on **OK**  
 	![](images/010.png)
 
 1.	The artifact is uploaded. Click on **Save**  
 	![](images/011.png) 
 
-1.	Open the configuration URL document, which you will need to complete the exercise. Documents are available inside **Iflowgenerator** folder. Please use the file (URLS_rktw002.TXT or URLS_rktw003.TXT) assignement to you by the instructor.
+1.	Open the configuration URL document, which you will need to complete the exercise. Documents are available inside **Iflowgenerator** folder. Please use the file (*URLS\_rktw002.TXT* or *URLS\_rktw003.TXT*) assignement to you by the instructor.
 	
 1.	Take the **IoT Service Cockpit URL** and paste it in a new browser window  
 	![](images/012.png)
@@ -141,11 +141,11 @@ Each device exchange data with a specific protocol (for example: REST in this ex
 
 	|Parameter|Value|
 	|---------|-----|
-	|Name|Cooler_XX|
+	|Name|Cooler\_XX|
 	|Gateway|Rest Network|
 	|Alternate ID|11:22:33:XX|
 
-	replacing **XX** with your group number; then click on **Create**. In this way you are creating a new device named Cooler_XX which is going to use the REST Network as a gateway. Since this is not a real device, you are also assigning to it a fake MAC Address like 11:22:33:XX, which be used later to identify the device  
+	replacing **XX** with your group number; then click on **Create**. In this way you are creating a new device named Cooler\_XX which is going to use the REST Network as a gateway. Since this is not a real device, you are also assigning to it a fake MAC Address like 11:22:33:XX, which be used later to identify the device  
 
 	![](images/017.png)
 
@@ -292,7 +292,7 @@ This section explains various ways we can consume and visualize the measurements
 1.	Open the Internet of Things Service Cockpit with your user credentials  
 	![](images/052.png)
 
-1.	In the main menu, go to Devices. Select your device (Cooler_XX) and click on the Data Visualization tab  
+1.	In the main menu, go to Devices. Select your device (Cooler\_XX) and click on the Data Visualization tab  
 	![](images/053.png)
 
 1.	For the 3 drop down list select the following parameters
@@ -520,7 +520,7 @@ In this part, you will discover the CPL265 session Integration content from SAP 
 1. Make sure you are in your package and click on the **Configure** button  
 	![](images/094.png)
 
-1. Select **IoTS4** in the Receiver drop down list and configure the **address** and the **query**, taking them from the Integration Service document. Remember to replace the **\<device\_ID\>** string with the ID of the device you created earlier. This ID can be read from the Device's details page in the IoT Service cockpit. Keep **HTTP** as Adapter Type and **IoTS4_USER** as Credential Name. Once done click on **Save**  
+1. Select **IoTS4** in the Receiver drop down list and configure the **address** and the **query**, taking them from the Integration Service document. Remember to replace the **\<device\_ID\>** string with the ID of the device you created earlier. This ID can be read from the Device's details page in the IoT Service cockpit. Keep **HTTP** as Adapter Type and **IoTS4\_USER** as Credential Name. Once done click on **Save**  
 	![](images/095.png)
 
 1. Now select **RuleEngine** in the Receiver drop down list. This needs to be set to the URL you can read in the Integration Service document under the **Receiver: RuleEngine** section. Even here, remember to use your **CPL265ParticipantXX** account, where **XX** is your group number. Leave all other parameters as by default and click **Save**  
@@ -545,7 +545,7 @@ In this part, you will discover the CPL265 session Integration content from SAP 
 
 	|Parameter |Value                                                   |
 	|----------|--------------------------------------------------------|
-	|devicename|Cooler_XX (where XX is your group number                |
+	|devicename|Cooler\_XX (where XX is your group number                |
 	|userid    |your P-Number user, you use to access SAP Cloud Platform|
 	|deviceid  |the MAC address of your device                          |
 	
@@ -625,7 +625,7 @@ In this section, we will confirm the successful scenario completion. This is don
 1. Click on the **Service** tab  
 	![](images/124.png)
 
-1. You should be able to see a ticket related to your **Cooler_XX** device, where **XX** is your group number. Click on this ticket  
+1. You should be able to see a ticket related to your **Cooler\_XX** device, where **XX** is your group number. Click on this ticket  
 	![](images/125.png)
 	
 1. Here you get the content of the ticket where the Temperature Sensor violation is reported  

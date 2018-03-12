@@ -51,6 +51,7 @@ Here below are prerequisites for this exercise.
 1. [SAP Cloud Platform Business Rules](#br)
 1. [Working with SAP Cloud Platform Integration](#cp-integration)
 1. [Confirm successful scenario completion](#scenario-completion)
+1. [House Keeping](#house-keeping)
 
 
 
@@ -340,11 +341,11 @@ SAP Cloud Platform Workflow Service enables customers and partners to extend the
 Workflow Service offers BPMN 2.0 based Business Process Modeling tools in SAP Web IDE and enables customers/partners to quickly build and deploy workflows. It exposes REST APIs to Read/Create/Modify/Cancel workflow instances and task instances from the system.
 
 #### --- Preparing SAP Web IDE Full-Stack ---
-1. In this exercise, you will manage your workflow using SAP Web IDE Full-Stack and, in order to know which link you have to use for this tool, open your SAP Cloud Platform Integration cockpit <https://rktw002-tmn.avt.eu1.hana.ondemand.com/itspaces/shell/discover>. Click on the **Design** menu and select the **CPL265-Maintenance Scenario with SAP Cloud Platform Integration** item  
+
+1. In this exercise, you will manage your workflow using SAP Web IDE Full-Stack and, in order to know which link you have to use for this tool, open your SAP Cloud Platform Integration cockpit **https://\<server\-name\>/itspaces/shell/discover**. Click on the **Design** menu and select the **CPL265-Maintenance Scenario with SAP Cloud Platform Integration** item  
 	![](images/062.png)
 
-1. Click on **Documents** and then on the **Configuration URL's EU Data Center** link  
-	![](images/063.png)
+1. Open the configuration URL document. Documents are available inside *Iflowgenerator* folder. Please use the file (*URLS\_rktw002.TXT* or *URLS\_rktw003.TXT*) assigned to you by the instructor
 	 
 1. Copy the SAP Web IDE Full-Stack EU Data Center URL and paste it in a new Chrome browser window  
 	![](images/064.png)
@@ -498,24 +499,14 @@ Your goal here is to create a rule in the decision table to determine whether th
 In this part, you will discover the CPL265 session Integration content from SAP Cloud Platform Integration Content hub, configure and deploy the integration content.
 
 
-1.	Open Chrome browser and select the SAP Cloud Platform Integration tenant assigned to you, e. g.:
-	
-	<https://rktw002-tmn.avt.eu1.hana.ondemand.com/itspaces>
-	
-	or
-	
-	<https://rktw003-tmn.avt.eu1.hana.ondemand.com/itspaces>
-
-	In general, 2 tenants are available, in one of our data centers in Europe. The session instructors will provide you with the information which tenant will be used in your session
+1.	Open Chrome browser and select the SAP Cloud Platform Integration tenant assigned to you
 
 1. Logon to the tenant with the credentials provided by the session instructors. Please do NOT store your user's password when prompted. Select Never or Escape in this case  
 	![](images/091.png)
 	
-1.	On the Discover page of the SAP Cloud Platform Integration tenant, browse the **Design** space and Select the package **CPL265-Maintenance Scenario with SAP Cloud Platform Integration**  
-	![](images/092.png)
+1.	On the Discover page of the SAP Cloud Platform Integration tenant, browse the **Design** space and select the package **SAP Cloud Platform, Integration Service Workshop 2018 (Exercises) Group_XX** (where **XX** is the number assigned to you).  
 
 1. Select the **Artifacts** tab and click on your project, the one named "**CPL265-IntegrationFlowXX**" where **XX** is your group number  
-	![](images/093.png)
 
 1. Make sure you are in your package and click on the **Configure** button  
 	![](images/094.png)
@@ -634,7 +625,20 @@ In this section, we will confirm the successful scenario completion. This is don
 1. Congratulations! You have confirmed the whole scenario execution.
 
 
+### <a name="house-keeping"></a> House Keeping
+Once you are done with your hands on exercise kindly perform the following house keeping activity for SAP Cloud Platform Integration. Undeploy your configured integration flow to stop polling IoT data from SAP Cloud Platform Internet of Things.
 
+1.	Go back to your SAP Cloud Platform Integration tenant. If needed logon with the credentials provided by your session instructor and click on **Log On** 
+
+1.	Go to the main menu at the left upper corner and choose **Monitor**
+
+1.	Choose the tile **Manage Integration Content / All**
+
+1.	For the search enter your **group ID** to find your integration flow
+
+1.	Select your **integration flow** from the list
+
+1.	Choose **Undeploy** in the detail view of your integration flow. 
 
 
 

@@ -258,7 +258,7 @@ At this point we need in some way to install the certificate we have downloaded 
 1. Click on **Postman**  
 	![](images/044.png)
 
-1. Choose **POST** as new request type and enter as URL the line `https://<host_name>/IoT/gateway/rest/measures/11:22:33:XX` replacing **\<host\_name\>** with the host name of your IoT service and **XX** with your group number  
+1. Choose **POST** as new request type and enter as URL the line `https://<host_name>/iot/gateway/rest/measures/11:22:33:XX` replacing **\<host\_name\>** with the host name of your IoT service and **XX** with your group number  
 	![](images/045.png)
 
 1. Choose **NoAuth** as **Authorization Type**  

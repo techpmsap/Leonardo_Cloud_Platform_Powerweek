@@ -403,7 +403,7 @@ In order to perform this step you need to have Postman Interceptor installed in 
 1.	On the left-hand side, select **01 Thing Configuration -> Read configuration**. A new tab opens up on the right-hand side containing a GET request to read the package configuration. Some of the variables in the URL request will be replaced by the corresponding ones in the environment you have configured before. Click on **Send**  
 	![](images/070.png)
 
-1. You shoudl get a JSON file with all the details about your package configuration  
+1. You should get a JSON file with all the details about your package configuration  
 	![](images/071.png)
 
 1. If the response you get is only an HTML file, it means that there is something wrong. Please check that your Postman Interceptor is enabled and try by signing in again to the Weather Station on Chrome with your credentials  
@@ -412,10 +412,13 @@ In order to perform this step you need to have Postman Interceptor installed in 
 1. In the "**wdiot1 iotae apis**" collection, click on **Thing Onboarding -> Fetch csrf token**. Click **Send** and you should receive a "**200 OK**" status code with some JSON in the response body  
 	![](images/073.png)
 
+1. Switch to the **Headers** tab and copy the **x-csrf-token** key in the clipboard
+	![](images/073b.png)
+
 1. On the top right corner, be sure to have the **wdiot1** environment selected, click on the **eye** button and then on **Edit**  
 	![](images/074.png)
 
-1. Replace the field **yourthingId** with the **Thing ID** you received when you created the thing. Make sure that a **x-csrf-token** has been created and click on **Update**  
+1. Replace the field **yourthingId** with the **Thing ID** you received when you created the thing. Make sure that a **x-csrf-token** has been created. If not, paste in the textbox the value you have copied in the clipboard; click on **Update**  
 	![](images/075.png)
 
 1. Close the popup window  

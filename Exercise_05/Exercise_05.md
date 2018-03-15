@@ -25,7 +25,7 @@ In this exercise you can experience how easy it is to use the available SAP Leon
 Here below are prerequisites for this exercise.
 
 * A trial account on the SAP Cloud Platform. You can get one by registering here <https://account.hanatrial.ondemand.com>
-* Download the files [Topic_Detection.zip](files/Topic_Detection.zip) and [test_images.zip](test_images.zip)
+* Download the files [Topic_Detection.zip](files/Topic_Detection.zip) and [test_images.zip](files/test_images.zip)
 and save them in a proper location: they will be used later in this document
 
 

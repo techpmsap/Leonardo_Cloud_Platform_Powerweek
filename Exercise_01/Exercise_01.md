@@ -148,7 +148,7 @@ Centralized Device data model provides the schema of device related configuratio
 1.	Choose the **POST** request and click on **Try it out**  
 	![](images/15.png)
 
-1.	Copy the following JSON script, which defines a new Sensor type with the name EKTProfile_XX (where XX must be replaced with your group number provided by the instructor). Replace
+1.	Copy the following JSON script, which defines a new Sensor type with the name EKTProfile_XX (where XX must be replaced with your workstation ID provided by the instructor). Replace
 
 	- **<<< Temperature Capability ID >>>** with the Temperature capability ID
 	- **<<< Light Capability ID >>>** with the Light capability ID
@@ -208,7 +208,7 @@ Each device exchanges data with a specific protocol (for example: MQTT in this e
 	|Gateway|MQTT Network|
 	|Alternate ID|11:22:33:XX|
 
-	(where **XX** must be replaced with your group number)
+	(where **XX** must be replaced with your workstation ID)
 
 	>NOTE: for the **Alternate ID**, as we are not using actual device and just a Paho MQTT Simulator Client, you can provide any string. This string resembles a MAC address where 4 groups of 2 digits must be sepaarted by colons (:)
 
@@ -219,7 +219,7 @@ Each device exchanges data with a specific protocol (for example: MQTT in this e
 1.	Device is listed under available devices. Select the new device and click on the "**+**" sign to create a new sensor  
 	![](images/21.png)
 
-1.	In the General Information section, enter a name such as "**EKT-Sensor**", select Sensor Type you have created earlier (i.e. EKTProfile\_XX, where XX must be replaced with your group number) and ignore the Alternate ID as it's optional. This EKT-Sensor automatically provides temperature, light measurements and it also supports a buzzer actuator: these are the capabilities we have previously defined. Once done click on **Add**  
+1.	In the General Information section, enter a name such as "**EKT-Sensor**", select Sensor Type you have created earlier (i.e. EKTProfile\_XX, where **XX** must be replaced with your workstation ID) and ignore the Alternate ID as it's optional. This EKT-Sensor automatically provides temperature, light measurements and it also supports a buzzer actuator: these are the capabilities we have previously defined. Once done click on **Add**  
 	![](images/22.png)
 
 1.	The new sensor is created and you should be able to see the **EKT-Sensor** under the **Sensors** tab of the Paho\_Client\_XX device onboarded earlier  
@@ -281,7 +281,7 @@ In this step, we will send the data from Device Simulator that supports MQTT pro
 1.	Status should turn to **Connected** as shown in the picture  
 	![](images/39.png)
 
-1.	In the **Publish** section, enter the topic `measures/11:22:33:XX` where `11:22:33:XX` is the MAC address you used before and where **XX** must be replaced with your group number  
+1.	In the **Publish** section, enter the topic `measures/11:22:33:XX` where `11:22:33:XX` is the MAC address you used before and where **XX** must be replaced with your workstation ID  
 	![](images/40.png)
 
 1. Use the default settings for QOS

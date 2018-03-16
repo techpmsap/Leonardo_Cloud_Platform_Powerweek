@@ -77,7 +77,7 @@ Here below are prerequisites for this exercise.
 	| Description | Power Week Greenhouse Package XX |
 	| Scope | Private |
 	
-	where **XX** must be replaced by your group number. Then click first on **Save** and then on the **Home** button  
+	where **XX** must be replaced by your workstation ID. Then click first on **Save** and then on the **Home** button  
 	![](images/005.png)
 
 1. Check that your package has been created successfully and go back to the Launchpad's home page.
@@ -93,7 +93,7 @@ Here below are prerequisites for this exercise.
 1. Click on the "**cube**" button to change package  
 	![](images/008.png)
 
-1. Search for "pw.greenhouse.pk" and you should be able to find your package named **pw.greenhouse.pkg.xx**, where **xx** must be replace with your group number. Click on your package name  
+1. Search for "pw.greenhouse.pk" and you should be able to find your package named **pw.greenhouse.pkg.xx**, where **xx** must be replace with your workstation ID. Click on your package name  
 	![](images/009.png)
 
 1. Once you have selected your package and you have verified that it's the correct one, click on the "**+**" symbol in the master view. This will allow you to create a new property set  
@@ -107,7 +107,7 @@ Here below are prerequisites for this exercise.
 	| Description | Small Greenhouse Climate Property Set XX |
 	| Property Set Category | Measured Values |
 
-	(remember to replace **xx** with your group number) and click **Save**  
+	(remember to replace **xx** with your workstation ID) and click **Save**  
 	![](images/011.png)
 
 1. A new property set has been added. Keeping it selected, click on the "**+**" symbol in the **Measured Values** section  
@@ -186,7 +186,7 @@ Here below are prerequisites for this exercise.
 1. Click on the **Thing Modeler** button  
 	![](images/024.png)
 	
-1. Make sure you are in the right package, **pw.greenhouse.pkg.xx** where **xx** is your group number, select the **Thing Types** tab in the master view and click on the "**+**" sign  
+1. Make sure you are in the right package, **pw.greenhouse.pkg.xx** where **xx** is your workstation ID, select the **Thing Types** tab in the master view and click on the "**+**" sign  
 	![](images/025.png)
 
 1. Enter
@@ -196,7 +196,7 @@ Here below are prerequisites for this exercise.
 	| Name| small\_greenhouse\_tt\_xx |
 	| Description | Small Greenhouse Thing Type xx |
 
-	where **xx** must be replaced with your group number, and click **Save**  
+	where **xx** must be replaced with your workstation ID, and click **Save**  
 	![](images/026.png)
 
 1. Select the **Basic Data** tab and click on the "**+**" to add a new Property Set to this Thing Type  
@@ -271,7 +271,7 @@ The created Thing, in order to work properly, needs to be attached to a device. 
 1. Select **Capabilities** and click on the **+** sign to create a new Capability  
 	![](images/041.png)
 
-1. Enter the same name you used for the property set when you created your Thing. If you don't do this, then you won't be able to attach your thing with the device, because the metching will not be possible. If you have followed the naming convention used in this exercise, this name should be **sg\_climate\_ps\_xx** where xx must be replaced with your group number. Then click on the **+** sign to create a new property  
+1. Enter the same name you used for the property set when you created your Thing. If you don't do this, then you won't be able to attach your thing with the device, because the metching will not be possible. If you have followed the naming convention used in this exercise, this name should be **sg\_climate\_ps\_xx** where xx must be replaced with your workstation ID. Then click on the **+** sign to create a new property  
 	![](images/042.png)
 
 1. Enter
@@ -296,7 +296,7 @@ The created Thing, in order to work properly, needs to be attached to a device. 
 1. Select the **Sensor Types** item in the left-hand menu and click on the **+** sign to create a new sensor type  
 	![](images/045.png)
 
-1. Enter "**sg\_climate\_st\_xx**" for the **Name** and click (remember to replace **xx** with your group number) and click on the **+** sign to add a new capability  
+1. Enter "**sg\_climate\_st\_xx**" for the **Name** and click (remember to replace **xx** with your workstation ID) and click on the **+** sign to add a new capability  
 	![](images/046.png)
 
 1. Select the "**sg\_climate\_ps\_xx**" capability you have created earlier and set "measure" as its Type. Then click on **Create**  
@@ -309,7 +309,7 @@ The created Thing, in order to work properly, needs to be attached to a device. 
 
 	| Parameter| Value |
 	| --------- | ----- |
-	| Name | sg\_climate\_dev\_xx (remember to replace **xx** with your group number)|
+	| Name | sg\_climate\_dev\_xx (remember to replace **xx** with your workstation ID)|
 	| Gateway | REST Network |
 	![](images/049.png)
 
@@ -322,7 +322,7 @@ The created Thing, in order to work properly, needs to be attached to a device. 
 	| --------- | ----- |
 	| Name | sg\_climate\_sens\_xx |
 	| Sensor Type | sg\_climate\_st\_xx |
-	(remember to replace **xx** with your group number)
+	(remember to replace **xx** with your workstation ID)
 	![](images/051.png)
 
 1. Your device has been successfully created.  
@@ -333,13 +333,13 @@ The created Thing, in order to work properly, needs to be attached to a device. 
 ### <a name="connect-thing-with-device"></a> Connect the thing with the device
 We can now connect the Thing with the created device.
 
-1. Go back to the **IoT Application Enablement cockpit**, select the "**small\_greenhouse\_xx**" thing, where **xx** must be replaced by your group number, from the Thigs tab and click on the **Connect** button on the top right corner  
+1. Go back to the **IoT Application Enablement cockpit**, select the "**small\_greenhouse\_xx**" thing, where **xx** must be replaced by your workstation ID, from the Thigs tab and click on the **Connect** button on the top right corner  
 	![](images/053.png)
 
 1. First set the **Device ID** by clicking on the drop down menu  
 	![](images/054.png)
 
-1. Enter **sg\_** to filter the device list and select the device **sg\_climate\_dev\_xx** you created previously (**xx** is your group number)  
+1. Enter **sg\_** to filter the device list and select the device **sg\_climate\_dev\_xx** you created previously (**xx** is your workstation ID)  
 	![](images/055.png)
 
 1. Then select the **Sensor**  
@@ -391,7 +391,7 @@ In order to perform this step you need to have Postman Interceptor installed in 
 	| number| xx |
 	| packageId | pw.greenhouse.pkg.xx (this is the name you used earlier)|
 	 
-	where **xx** is your group number. Then click on **Update**  
+	where **xx** is your workstation ID. Then click on **Update**  
 	![](images/067.png)
 
 1. Close the popup window from the top right corner  
@@ -487,7 +487,7 @@ In this section you will build a simple SAPUI5 app which allows you to monitor y
 	| Namespace | com.greenhousexx |
 	| Title | Small Greenhouse Application |
 
-	(remember to replace **xx** with your group number)  
+	(remember to replace **xx** with your workstation ID)  
 	![](images/092.png)
 
 1. Select the Service "**IOTAS-ADVANCEDLIST-THING-ODATA**" and browse for the **Property Sets**  
@@ -496,7 +496,7 @@ In this section you will build a simple SAPUI5 app which allows you to monitor y
 1. Open the drop down list  
 	![](images/094.png)
 
-1. Enter "pw.greenhouse.pk" in the searchbox and select the Thing Type you have created earlier. You need to choose the one with your group number. Then click **OK**  
+1. Enter "pw.greenhouse.pk" in the searchbox and select the Thing Type you have created earlier. You need to choose the one with your workstation ID. Then click **OK**  
 	![](images/095.png)
 
 1. Select all the common property sets and click **OK**  
@@ -542,7 +542,7 @@ Before we can send some data to the device we need to establish a connection wit
 1. Go to your IoT Service cockpit and login with your credentials  
 	![](images/107.png)
 
-1. Select Devices, type "sg" in the search box, select your device **sg\_climate\_dev\_xx** (where **xx** is your group number), select the "Certificate" tab and click on **Generate Certificate**  
+1. Select Devices, type "sg" in the search box, select your device **sg\_climate\_dev\_xx** (where **xx** is your workstation ID), select the "Certificate" tab and click on **Generate Certificate**  
 	![](images/108.png)
 	
 1. Select "**p12**" as Certificate Type and click **Generate**. The certificate will be generated and you will receive a prompt to save the file on your disk. Please keep in mind where you put it, since it will be required in the next section  
@@ -695,7 +695,7 @@ This is an OPTIONAL part of the exercise. There is another way to create an IoT 
 	| Namespace | com.greenhouse.fsxx |
 	| Title | Small Greenhouse Freestyle Application |
 
-	(remember to replace **xx** with your group number)  
+	(remember to replace **xx** with your workstation ID)  
 	![](images/202.png)
 
 1. Select the Service "**IOTAS-ADVANCEDLIST-THING-ODATA**" and browse for the **Property Sets**  
@@ -704,7 +704,7 @@ This is an OPTIONAL part of the exercise. There is another way to create an IoT 
 1. Open the drop down list  
 	![](images/204.png)
 
-1. Enter "pw.greenhouse.pk" in the search box and select the Thing Type you have created earlier. You need to choose the one with your group number. Then click **OK**  
+1. Enter "pw.greenhouse.pk" in the search box and select the Thing Type you have created earlier. You need to choose the one with your workstation ID. Then click **OK**  
 	![](images/205.png)
 
 1. Select all the common property sets and click **OK**  

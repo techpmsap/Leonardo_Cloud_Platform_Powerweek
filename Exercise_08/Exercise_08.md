@@ -77,7 +77,7 @@ In the next section, you will retrain the pre-trained Image Classification Model
 	```sh
 	cf login -a https://api.cf.eu10.hana.ondemand.com -u ml-train+XX@sap.com
 	```
-	where **XX** must be replaced with your group number. Enter the password for your user provided by the instructor.  Note: The password will not show.
+	where **XX** must be replaced with your workstation ID. Enter the password for your user provided by the instructor.  Note: The password will not show.
 	![](images/02.png)
 
 1.	Enter the command `cf service-key <instance name> <service key>` to display your service key and make sure that everything is available.
@@ -87,7 +87,7 @@ In the next section, you will retrain the pre-trained Image Classification Model
 	cf service-key ml_instance_XX ml_servicekey_XX
 	```
 	
-	where **XX** must be replaced by your group number
+	where **XX** must be replaced by your workstation ID
 	![](images/03.png)
 
 1.	Install SAPML CF CLI plugin. This CLI plugin is an extension of standard CF plugin. We have added a subcommand called `sapml` to easily interact with our ML Foundation APIs. Download the plugin file related to your platform and save it in a proper location on your machine
@@ -208,7 +208,7 @@ In the next section, you will retrain the pre-trained Image Classification Model
 
 	![](images/14.png)
 
-1. Display the retrain log by opening it with your favourite text editor. Please whait until the job is finished successfully and take note of the version number at the bottom of the log (in your case it should be 1). This version is incremented for every retrain run when using the same model name. The model name is the "brand-XX" string (remember to replace **XX** with your group number) you have previously specified in the *retrain.json* file
+1. Display the retrain log by opening it with your favourite text editor. Please whait until the job is finished successfully and take note of the version number at the bottom of the log (in your case it should be 1). This version is incremented for every retrain run when using the same model name. The model name is the "brand-XX" string (remember to replace **XX** with your workstation ID) you have previously specified in the *retrain.json* file
 
 	![](images/15.png)
 
@@ -237,7 +237,7 @@ In the next section, you will use the prepared project and adjust it to call the
 	cf service-key ml_instance_XX ml_servicekey_XX
 	```
 	
-	where **XX** must be replaced by your group number, in order to get your service key.
+	where **XX** must be replaced by your workstation ID, in order to get your service key.
 
 	![](images/18.png)
 1. Open your favourite text editor and write down the following parameters:
@@ -245,7 +245,7 @@ In the next section, you will use the prepared project and adjust it to call the
 	- **clientid** (the Client ID)
 	- **clientsecret** (the Client Secret)
 	- **IMAGE_CLASSIFICATION** URL
-	- model name (it should be **brands-XX** where **XX** is your group number)  
+	- model name (it should be **brands-XX** where **XX** is your workstation ID)  
 
 	![](images/19.png)
 

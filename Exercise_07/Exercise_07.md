@@ -52,12 +52,12 @@ Organization and space will be automatically configured and made available durin
 
 
 1. Open Firefox as Chrome will use SSO for SAP Employees. Login to SAP Cloud Platform Cockpit via <https://account.hanatrial.ondemand.com/cockpit>. Login with your given e-Mail 
-**ml-train+XX@sap.com**, where **XX** must be replaced by your group number, and the password provided by the trainer  
+**ml-train+XX@sap.com**, where **XX** must be replaced by your workstation ID, and the password provided by the trainer  
 	![](images/01.png)
 1.	Navigate to **Regions -> Cloud Foundry Environment > Europe (Frankfurt)**  
 	![](images/02.png)
 1.	Click on your global account **SAP\_ML\_Demo**  	![](images/03.png)
-1.	Click on the Subaccount/Organisation **ml-trainxx** where XX is your group number  
+1.	Click on the Subaccount/Organisation **ml-trainxx** where XX is your workstation ID  
 	![](images/04.png)
 1.	Here you can see some your Cloud Foundry details like the name of your Organization, the number of Spaces and the API endpoint. Click on the **number of Spaces**  	![](images/05.png)
 1. Click on the tile named "training" which is the one related to your space  
@@ -81,13 +81,13 @@ Before we continue we need to get a service key from the ML Foundation service. 
 	![](images/11.png)
 1.	Click **Next**  
 	![](images/12.png)
-1.	Enter a name for the new instace, like **ml\_instance\_XX** where XX is your group number and click **Finish**  
+1.	Enter a name for the new instace, like **ml\_instance\_XX** where XX is your workstation ID and click **Finish**  
 	![](images/13.png)
 1.	Click on the newly created instance  
 	![](images/14.png)
 1.	Select **Service Keys** in the left menu bar and click the **Create Service Key** button to create a new service key for your instance  
 	![](images/15.png)
-1.	 Enter a name for this service key like **ml\_servicekey\_XX** where XX is your group number; then click **Save** to save your newly created service key  
+1.	 Enter a name for this service key like **ml\_servicekey\_XX** where XX is your workstation ID; then click **Save** to save your newly created service key  
 	![](images/16.png)
 1.	You get a screen like this. Please keep this page open or copy the service key somewhere because you'll need it in the next exercises  
 	![](images/17.png)

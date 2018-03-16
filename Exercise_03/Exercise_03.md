@@ -70,7 +70,7 @@ Before moving forward let's check up if all the prerequisites are in place for t
 	
 1. You will find a file named *Iflowgenerator.zip*: extract it as well in a proper directory and open this folder
 
-1. Open the *config.propeties* file with your favourite text editor, change the XX value to your group number and save the file  
+1. Open the *config.propeties* file with your favourite text editor, change the XX value to your workstation ID and save the file  
 	![](images/003.png)
 
 1. Open a terminal window and navigate to the folder where you have extracted the Iflowgenerator
@@ -80,7 +80,7 @@ Before moving forward let's check up if all the prerequisites are in place for t
 	```sh
 	java -jar CPIPkgClient-1.0.0-shaded.jar "CPL265-Maintenance Scenario with SAP Cloud Platform Integration.zip"
 	```
-	The command is executed and it generates a file named *CPL265-IntegrationFlowXX.zip* where **XX** is you group number
+	The command is executed and it generates a file named *CPL265-IntegrationFlowXX.zip* where **XX** is you workstation ID
 	>NOTE: don't care about the "error in opening zip file"  
 
 	![](images/004.png)
@@ -98,7 +98,7 @@ Before moving forward let's check up if all the prerequisites are in place for t
 1.	Here, you will create an Integration Package to store your iFlows for the Exercise. Click on ***Create***.  
 	![](images/006b.png) 
 
-1. Enter details. **NOTE:** Replace XX with the group number provided by the instructor
+1. Enter details. **NOTE:** Replace XX with the workstation ID provided by the instructor
 
 	|Field|Value|
 	|---------|-----|
@@ -114,7 +114,7 @@ Before moving forward let's check up if all the prerequisites are in place for t
 1. Select the **Artifacts** tab and click on **Add** to drop down the selection list. Select **Integration Flow**.
 	![](images/007a.png)
 
-1.	Click on the **Upload** option, browse the **CPL265-IntegrationFlowXX.zip** file generated with the previous tool, enter the name "**CPL265-IntegrationFlowXX**" for the artifact (**XX** must be replaced by your group number), enter a description like "**Maintenance scenario**" and click on **OK**  
+1.	Click on the **Upload** option, browse the **CPL265-IntegrationFlowXX.zip** file generated with the previous tool, enter the name "**CPL265-IntegrationFlowXX**" for the artifact (**XX** must be replaced by your workstation ID), enter a description like "**Maintenance scenario**" and click on **OK**  
 	![](images/010.png)
 
 1.	The artifact is uploaded. Click on **Save**  
@@ -146,7 +146,7 @@ Each device exchange data with a specific protocol (for example: REST in this ex
 	|Gateway|Rest Network|
 	|Alternate ID|11:22:33:XX|
 
-	replacing **XX** with your group number; then click on **Create**. In this way you are creating a new device named Cooler\_XX which is going to use the REST Network as a gateway. Since this is not a real device, you are also assigning to it a fake MAC Address like 11:22:33:XX, which be used later to identify the device  
+	replacing **XX** with your workstation ID; then click on **Create**. In this way you are creating a new device named Cooler\_XX which is going to use the REST Network as a gateway. Since this is not a real device, you are also assigning to it a fake MAC Address like 11:22:33:XX, which be used later to identify the device  
 
 	![](images/017.png)
 
@@ -258,7 +258,7 @@ At this point we need in some way to install the certificate we have downloaded 
 1. Click on **Postman**  
 	![](images/044.png)
 
-1. Choose **POST** as new request type and enter as URL the line `https://<host_name>/iot/gateway/rest/measures/11:22:33:XX` replacing **\<host\_name\>** with the host name of your IoT service and **XX** with your group number  
+1. Choose **POST** as new request type and enter as URL the line `https://<host_name>/iot/gateway/rest/measures/11:22:33:XX` replacing **\<host\_name\>** with the host name of your IoT service and **XX** with your workstation ID  
 	![](images/045.png)
 
 1. Choose **NoAuth** as **Authorization Type**  
@@ -359,7 +359,7 @@ Workflow Service offers BPMN 2.0 based Business Process Modeling tools in SAP We
 #### --- Deleting an existing project ---
 If you find content from previous runs of the CPL265 session in the workspace, remove the content as follows:
 
-1. On the left toolbar, click on the Development tab **</>**. Check your workspace: if you see that a project with the name *CPL265-ParticipantXX*, where **XX** is your group number, already exists, please follow the next step to delete it, otherwise you can simply skip the next step  
+1. On the left toolbar, click on the Development tab **</>**. Check your workspace: if you see that a project with the name *CPL265-ParticipantXX*, where **XX** is your workstation ID, already exists, please follow the next step to delete it, otherwise you can simply skip the next step  
 	![](images/067.png)
 	 
 1. Right click on the name of the project that you want to delete and from the context menu choose **Delete**. Click **OK** to confirm the operation and the project will be removed from the workspace  
@@ -376,10 +376,10 @@ In such a situation, it might be advisable to request a service technician to ch
 1. Select the Category **Business Process Management**: a **Workflow Project** template tile appears, select it and click **Next**  
 	![](images/070.png)
 
-1. Enter the project name *CPL265-ParticipantXX*, where **XX** is your group number, and click **Next**  
+1. Enter the project name *CPL265-ParticipantXX*, where **XX** is your workstation ID, and click **Next**  
 	![](images/071.png)
 
-1. Enter *ServiceRequestParticipantXX* as the Workflow Project name, where **XX** is your group number, and click **Finish**  
+1. Enter *ServiceRequestParticipantXX* as the Workflow Project name, where **XX** is your workstation ID, and click **Finish**  
 	![](images/072.png)
 
 1. A new worflow is created  
@@ -450,7 +450,7 @@ Your goal here is to create a rule in the decision table to determine whether th
 1. Go back to the Click on **Documents** and then on the **Configuration URL's EU Data Center** link, wiht the same steps you have done at the beginning of the previous chapter and locate the Business Rules Service Tenant URL. Copy this url and paste it in a new browser window  
 	![](images/080.png)
 	 
-1.  Click on the project **CPL265ParticipantXX** where **XX** is your associated group number  
+1.  Click on the project **CPL265ParticipantXX** where **XX** is your associated workstation ID  
 	![](images/081.png)
 	 
 1. Be sure you have selected the right project and select the **Rules** tab. Then click on the **ThresholdExceedsRule** item  
@@ -479,7 +479,7 @@ Your goal here is to create a rule in the decision table to determine whether th
 
 #### --- Deploy ThresholdExceeds Rule Service ---
 
-1. Click on **CPL265ParticipantXX**, where **XX** represents your group number, to go back to your rule project  
+1. Click on **CPL265ParticipantXX**, where **XX** represents your workstation ID, to go back to your rule project  
 	![](images/087.png)
 	
 1. Select the **Rule Services** tab and click on **Deploy**  
@@ -506,7 +506,7 @@ In this part, you will discover the CPL265 session Integration content from SAP 
 	
 1.	On the Discover page of the SAP Cloud Platform Integration tenant, browse the **Design** space and select the package **SAP Cloud Platform, Integration Service Workshop 2018 (Exercises) Group_XX** (where **XX** is the number assigned to you).  
 
-1. Select the **Artifacts** tab and click on your project, the one named "**CPL265-IntegrationFlowXX**" where **XX** is your group number  
+1. Select the **Artifacts** tab and click on your project, the one named "**CPL265-IntegrationFlowXX**" where **XX** is your workstation ID  
 
 1. Make sure you are in your package and click on the **Configure** button  
 	![](images/094.png)
@@ -514,7 +514,7 @@ In this part, you will discover the CPL265 session Integration content from SAP 
 1. Select **IoTS4** in the Receiver drop down list and configure the **address** and the **query**, taking them from the Integration Service document. Remember to replace the **\<device\_ID\>** string with the ID of the device you created earlier. This ID can be read from the Device's details page in the IoT Service cockpit. Keep **HTTP** as Adapter Type and **IoTS4\_USER** as Credential Name. Once done click on **Save**  
 	![](images/095.png)
 
-1. Now select **RuleEngine** in the Receiver drop down list. This needs to be set to the URL you can read in the Integration Service document under the **Receiver: RuleEngine** section. Even here, remember to use your **CPL265ParticipantXX** account, where **XX** is your group number. Leave all other parameters as by default and click **Save**  
+1. Now select **RuleEngine** in the Receiver drop down list. This needs to be set to the URL you can read in the Integration Service document under the **Receiver: RuleEngine** section. Even here, remember to use your **CPL265ParticipantXX** account, where **XX** is your workstation ID. Leave all other parameters as by default and click **Save**  
 	![](images/096.png)
 
 1. Choose **CSRF\_Provider\_WORKFLOW** in the Receiver box and set the address to the link you can find in the Integration Service document under the **Receiver: CSRF\_Provider\_WORKFLOW** section. Leave all other parameters as by default and click **Save**  
@@ -536,7 +536,7 @@ In this part, you will discover the CPL265 session Integration content from SAP 
 
 	|Parameter |Value                                                   |
 	|----------|--------------------------------------------------------|
-	|devicename|Cooler\_XX (where XX is your group number                |
+	|devicename|Cooler\_XX (where XX is your workstation ID                |
 	|userid    |your P-Number user, you use to access SAP Cloud Platform|
 	|deviceid  |the MAC address of your device                          |
 	
@@ -601,7 +601,7 @@ In this section, we will confirm the successful scenario completion. This is don
 1. Exit from My Inbox and open the **Monitor Workflows** app  
 	![](images/119.png)
 
-1. Locate on the left menu your **ServiceRequestParticipantXX** workflow, where **XX** is your group number, and click on **Show Instances**  
+1. Locate on the left menu your **ServiceRequestParticipantXX** workflow, where **XX** is your workstation ID, and click on **Show Instances**  
 	![](images/120.png)
 
 1. You can get some further details about the running instance  
@@ -616,7 +616,7 @@ In this section, we will confirm the successful scenario completion. This is don
 1. Click on the **Service** tab  
 	![](images/124.png)
 
-1. You should be able to see a ticket related to your **Cooler\_XX** device, where **XX** is your group number. Click on this ticket  
+1. You should be able to see a ticket related to your **Cooler\_XX** device, where **XX** is your workstation ID. Click on this ticket  
 	![](images/125.png)
 	
 1. Here you get the content of the ticket where the Temperature Sensor violation is reported  

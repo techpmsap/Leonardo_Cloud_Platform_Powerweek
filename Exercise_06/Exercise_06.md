@@ -49,7 +49,7 @@ This user should have all the necessary privileges to perform all parts of the f
 
 **ml-train+XX@sap.com** 
 
-where **XX** needs to be replaced by your group number, e.g. if your group number is 01, then you should take the user ml-train+01@sap.com.
+where **XX** needs to be replaced by your workstation ID, e.g. if your workstation ID is 01, then you should take the user ml-train+01@sap.com.
 
 Please make sure that you work with the correct username to avoid conflicts with other participants. Take note of the following credentials, you will be using them during all exercises. 
 
@@ -70,7 +70,7 @@ Required resources for this step:
 * [MLFSAPUI5\_Project\_Solution.zip](files/MLFSAPUI5_Project_Solution.zip)
 
 1. Open Firefox as Chrome will use SSO for SAP Employees. Login to SAP Cloud Platform Cockpit via <http://cloudplatform.sap.com>. Login with your given e-Mail 
-**ml-train+XX@sap.com**, where **XX** must be replaced by your group number, and the password provided by the trainer.
+**ml-train+XX@sap.com**, where **XX** must be replaced by your workstation ID, and the password provided by the trainer.
 
 	![](images/01.png)
 

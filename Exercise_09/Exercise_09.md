@@ -79,7 +79,7 @@ In this section, you will take a prepared tensorflow model and upload it to the 
 
 	|Parameter|Value|
 	|---------|-----|
-	| modelName| enter a name of your choice, for example **mnist\_model\_XX** where **XX** is your group number|
+	| modelName| enter a name of your choice, for example **mnist\_model\_XX** where **XX** is your workstation ID|
 	|File|select the [mnist.zip](files/mnist.zip) file you have downloaded in the prerequisites|
 	|Authorization|enter your token generated with the Access Token tool|  
 
@@ -167,7 +167,7 @@ In the next section, you will adjust a prepared inference app with your destinat
 	|name| the name you want to give to the Cloud Foundry application (i.e. byom\_infapp\_XX) |
 	|MODEL\_NAME|the name of the model you have just deployed (i.e. mnist\_model\_XX)|  
 	|services|the name of ML Foundation instance you have created in the first exercises (i.e. ml\_instance\_XX)|
-	Remember to replace XX with your group number. If you have followed the naming convention we have used so far, you just need to replace the XX placeolder in this file. Once done, save and close the file.
+	Remember to replace XX with your workstation ID. If you have followed the naming convention we have used so far, you just need to replace the XX placeolder in this file. Once done, save and close the file.
 
 	![](images/16.png)
 
@@ -185,7 +185,7 @@ In the next section, you will adjust a prepared inference app with your destinat
 	```sh
 	cf login -a https://api.cf.eu10.hana.ondemand.com -u ml-train+XX@sap.com
 	```
-	where **XX** must be replaced with your group number
+	where **XX** must be replaced with your workstation ID
 
 	![](images/17.png)
 

@@ -189,7 +189,7 @@ Centralized Device data model provides the schema of device related configuratio
 
 
 ### <a name="device-and-sensor-onboarding"></a> Device and sensor onboarding
-Each device exchange data with a specific protocol (for example: MQTT in this exercise).  Each device corresponds to 1 unique physical node. We need to create physical node that corresponds to a physical device. In the following section, it is described how to create a Device for the MQTT network. Also we onboard all the sensors and Actuators for the Device.
+Each device exchanges data with a specific protocol (for example: MQTT in this exercise).  Each device corresponds to 1 unique physical node. We need to create physical node that corresponds to a physical device. In the following section, it is described how to create a Device for the MQTT network. Also we onboard all the sensors and Actuators for the Device.
 
 1.	Log on to the IoT Cockpit of SAP Cloud Platform Internet of Thing with the tenant user credentials  
 	

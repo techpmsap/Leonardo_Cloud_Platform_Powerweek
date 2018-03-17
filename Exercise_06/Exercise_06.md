@@ -188,7 +188,7 @@ For the two urls "Image Classification" and "Product Image Classification" repla
 	![](images/32.png)
 1. An application with two tiles comes up. Select the tile with the title **Image Classification**
 	![](images/33.png)
-1. Extract the 4 images contained in the zip file you have downloaded already as explained in the prerequisites ([test_images.zip](test_images.zip))
+1. Extract the 4 images contained in the zip file you have downloaded already as explained in the prerequisites ([test_images.zip](files/test_images.zip))
 	![](images/34.png)
 1. Either drag & drop the selected image onto the icon or press the icon to open a file select dialog.
 Choose one by one *tennis_ball.jpg*, *keyboard.jpg*, *laptop.png* and *iPhoneX.jpg* as test images and analyze the results

@@ -364,7 +364,7 @@ This section gives brief overview of how to work with device commands in MQTT ne
 
 1.	Add a new subscription for Device Commands by entering the following value in the **Topic** column  
 
-	`Topic = commands/<<<Device Mac Address>>>` where **\<\<\<Device Mac Address\>\>\>** must be replaced with the 	Mac address you created earlier. Then click on **Subscribe**  
+	`commands/<<<Device Mac Address>>>` where **\<\<\<Device Mac Address\>\>\>** must be replaced with the 	Mac address you created earlier. Then click on **Subscribe**  
 	![](images/57.png)
 
 1. In the history you should get the information that a new subscription has been created  

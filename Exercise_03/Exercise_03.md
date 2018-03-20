@@ -73,7 +73,7 @@ Before moving forward let's check up if all the prerequisites are in place for t
 1. Open the *config.propeties* file with your favourite text editor, change the XX value to your workstation ID and save the file  
 	![](images/003.png)
 
-1. Open a terminal window and navigate to the folder where you have extracted the Iflowgenerator
+1. Open a terminal window and navigate to the folder where you have extracted the *Iflowgenerator*
 
 1. Run the command
 
@@ -130,7 +130,7 @@ Before moving forward let's check up if all the prerequisites are in place for t
 
 
 ### <a name="device-onboarding"></a> Device onboarding
-Each device exchange data with a specific protocol (for example: REST in this exercise).  Each device corresponds to 1 unique physical node. We need to create physical node that corresponds to a physical device. In the following section, it is described how to create a Device for the REST network.
+Each device exchanges data with a specific protocol (for example: REST in this exercise).  Each device corresponds to 1 unique physical node. We need to create physical node that corresponds to a physical device. In the following section, it is described how to create a Device for the REST network.
 
 1. Login to the **IoT Service Cockpit URL** with the credentials provided by the instructor  
 	![](images/015.png)
@@ -181,7 +181,7 @@ Each device exchange data with a specific protocol (for example: REST in this ex
 1. As a side note, if you need to know where you downloaded the certificate, you can click on the small down arrow on the Chrome status bar and click on **Show in Finder** for MAC users or **Show in Explorer** for Windows users  
 	![](images/024.png)
 
-1. Congratulations! You have successfully onboarded a new device and a new sensor.
+1. Congratulations! You have successfully on-boarded a new device and a new sensor.
 
 
 
@@ -258,7 +258,13 @@ At this point we need in some way to install the certificate we have downloaded 
 1. Click on **Postman**  
 	![](images/044.png)
 
-1. Choose **POST** as new request type and enter as URL the line `https://<host_name>/iot/gateway/rest/measures/11:22:33:XX` replacing **\<host\_name\>** with the host name of your IoT service and **XX** with your workstation ID  
+1. Choose **POST** as new request type and enter as URL the line 
+
+	```
+	https://<host_name>/iot/gateway/rest/measures/11:22:33:XX
+	```
+
+replacing **\<host\_name\>** with the host name of your IoT service and **XX** with your workstation ID  
 	![](images/045.png)
 
 1. Choose **NoAuth** as **Authorization Type**  
@@ -267,7 +273,12 @@ At this point we need in some way to install the certificate we have downloaded 
 1. In the **Headers** tab, add a new header with `Content-Type = application/json`  
 	![](images/047.png)
 
-1. In the **Body** tab, select **raw** mode and enter the string `{"capabilityAlternateId":[1],"measures":[20],"sensorAlternateId":"<Sensor_alternate_ID>"}` replacing **\<Sensor\_alternate\_ID\>** with the alternate ID of your sensor. Then click on **Send**  
+1. In the **Body** tab, select **raw** mode and enter the string 
+
+	```
+	{"capabilityAlternateId":[1],"measures":[20],"sensorAlternateId":"<Sensor_alternate_ID>"}
+	```
+replacing **\<Sensor\_alternate\_ID\>** with the alternate ID of your sensor. Then click on **Send**  
 	![](images/048.png)
 
 1. Select the right certificate and click on **OK*  
@@ -314,7 +325,12 @@ This section explains various ways we can consume and visualize the measurements
 1. Reopen Chrome browser and go again to the <chrome://apps> link. Open Postman and click on the **+** sign after the last tab, to open a new tab  
 	![](images/056.png)
 
-1. Select GET as the request type and enter the URL `https://<host_name>/IoT/core/api/v1/devices/<device_ID>/measures` where **\<host\_name\>** is the host name of your IoT Service and **\<device\_ID\>** can be read in the device page under the device name
+1. Select GET as the request type and enter the URL 
+	
+	```
+	https://<host_name>/iot/core/api/v1/devices/<device_ID>/measures
+	```
+where **\<host\_name\>** is the host name of your IoT Service and **\<device\_ID\>** can be read in the device page under the device name
 
 	>NOTE: Please note down the device\_ID and the host\_name used here, since this information will be required at a later part of the exercise  
 
@@ -341,9 +357,7 @@ SAP Cloud Platform Workflow Service enables customers and partners to extend the
 Workflow Service offers BPMN 2.0 based Business Process Modeling tools in SAP Web IDE and enables customers/partners to quickly build and deploy workflows. It exposes REST APIs to Read/Create/Modify/Cancel workflow instances and task instances from the system.
 
 #### --- Preparing SAP Web IDE Full-Stack ---
-
-1. In this exercise, you will manage your workflow using SAP Web IDE Full-Stack and, in order to know which link you have to use for this tool, open your SAP Cloud Platform Integration cockpit **https://\<server\-name\>/itspaces/shell/discover**. Click on the **Design** menu and select the **CPL265-Maintenance Scenario with SAP Cloud Platform Integration** item  
-	![](images/062.png)
+In this exercise, you will manage your workflow using SAP Web IDE Full-Stack.
 
 1. Open the configuration URL document. Documents are available inside *Iflowgenerator* folder. Please use the file (*URLS\_rktw002.TXT* or *URLS\_rktw003.TXT*) assigned to you by the instructor
 	 

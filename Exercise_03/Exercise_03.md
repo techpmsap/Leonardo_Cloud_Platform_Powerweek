@@ -65,7 +65,7 @@ Before moving forward let's check up if all the prerequisites are in place for t
 
 1. Download the [Exercise\_03\_Support\_Files.zip](files/Exercise_03_Support_Files.zip) file
 
-1. Extract the content of this file in a proper location on your machine using the password provided my your instructor 
+1. Extract the content of this file in a proper location on your machine using the password provided by your instructor 
 	![](images/002.png) 
 	
 1. You will find a file named *Iflowgenerator.zip*: extract it as well in a proper directory and open this folder

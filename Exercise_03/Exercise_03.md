@@ -252,7 +252,7 @@ At this point we need in some way to install the certificate we have downloaded 
 
 ### <a name="sending-messages"></a> Sending messages via REST using Postman
 
-1. Open Chrome browser and navigate to <chrome://apps>  
+1. If you have Chrome and/or Postman open, please close all windows before proceeding. Then open a new Chrome browser and navigate to <chrome://apps>  
 	![](images/043.png)
 
 1. Click on **Postman**  

@@ -70,14 +70,18 @@ In the next section, you will retrain the pre-trained Image Classification Model
 	cf
 	``` 
 	
-	to check if the SAP CF CLI is available. You should get a screen like this  
+	to check if the SAP CF CLI is available. You should get a screen like this. If not, you need to install the CF ClI as explained in the prerequisites to this workshop  
 	![](images/01.png)
 1. Now, login to SAP Cloud Platform with the command
 
 	```sh
 	cf login -a https://api.cf.eu10.hana.ondemand.com -u ml-train+XX@sap.com
 	```
-	where **XX** must be replaced with your workstation ID. Enter the password for your user provided by the instructor.  Note: The password will not show.
+	where **XX** must be replaced with your workstation ID. Enter the password for your user provided by the instructor. In case you are requested to choose an organization, please choose the one named **ml-trainXX**, where **XX** is your workstation ID
+	>NOTE: The password will not be shown.
+	
+	![](images/01_2.png)
+1. You should see the following screen
 	![](images/02.png)
 
 1.	Enter the command `cf service-key <instance name> <service key>` to display your service key and make sure that everything is available.
@@ -208,7 +212,7 @@ In the next section, you will retrain the pre-trained Image Classification Model
 
 	![](images/14.png)
 
-1. Display the retrain log by opening it with your favourite text editor. Please whait until the job is finished successfully and take note of the version number at the bottom of the log (in your case it should be 1). This version is incremented for every retrain run when using the same model name. The model name is the "brand-XX" string (remember to replace **XX** with your workstation ID) you have previously specified in the *retrain.json* file
+1. Display the retrain log by opening it with your favourite text editor. Please whait until the job is finished successfully and **take note of the version number at the bottom of the log (in your case it should be 1)**. This version is incremented for every retrain run when using the same model name. The model name is the "brand-XX" string (remember to replace **XX** with your workstation ID) you have previously specified in the *retrain.json* file
 
 	![](images/15.png)
 
@@ -325,9 +329,13 @@ In the next section, you will use the prepared project and adjust it to call the
 	 
 1.	Either drag & drop the images you have already downloaded as a zip file ([RetrainImages.zip](files/RetrainImages.zip)) in the prerequisites section onto the icon or press the icon to open a file select dialog. Choose for example the *SAP\_WDF19.jpg* image
 	![](images/36.png)
+
 1.	You will see a result with three columns. The first one is the Image Classification pointing to the API Business Hub, the second one is the Product Image Classification service pointing to the API Business Hub and the third is the Image Classification service pointing to the ML Service Endpoint in SAP Cloud Foundry using your pretrained and deployed model
 	![](images/37.png)
-1. Congratutaltions! You have successfully tested your retrain service.
+
+	>NOTE: Scores shown here could be different from yours
+
+1. Congratulations! You have successfully tested your retrain service.
 
 
 ## Summary

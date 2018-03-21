@@ -84,14 +84,17 @@ Required resources for this step:
 1.	In the left menu bar, navigate to Services and search for "web". You will get two flavours of the SAP Web IDE. We will use the **SAP Web IDE Full-Stack** version as this is the one supports SAP Cloud Foundry and Java 
 	![](images/03.png)
 
-1.	Click on **Go to Service** which will open up the SAP Web IDE
-
+1.	Click on **Go to Service**  
 	![](images/04.png)
 
-1.	From the **File** menu click on **Import -> From File System** 
+1. This will open up the SAP Web IDE. If you see that there is already a project named *MLFSAPUI5\_Project\_Exercise* in the workspace, please right click on its name and choose **Delete**  
+	![](images/04_2.png)
 
+1. You should start with a completely empty workspace like the one in the picture  
+	![](images/04_3.png)
+
+1.	From the **File** menu click on **Import -> From File System**  
 	![](images/05.png)
-
 
 1.	Browse in your file system for the file you have already downloaded in the prerequisites section (*MLFSAPUI5\_Project\_Exercise.zip*), keep the proposed folder in the "Import to" field and click **OK**  
 	![](images/06.png)
@@ -115,12 +118,34 @@ In this exercise you will learn how to quickly integrate the Image and Product I
 
 1.	Open a new tab in your Firefox web browser and go to SAP Cloud Platform Cockpit <http://account.hanatrial.ondemand.com/cockpit>. Login in case you are not already logged in by using the given credentials and not SSO  
 	![](images/15.png)
+
 1.	Click on the **Neo Trial** tile  
 	![](images/16.png)
+
 1.	On the left side bar, you can navigate to **Connectivity -> Destinations**  
 	![](images/17.png)
+
+1. You should see only one destination named **webide_di**. If yes, please skip the next 4 steps  
+	![](images/17_2.png)
+
+	>NOTE: This destination is only required by SAP Web IDE to run applications in Web Preview mode: it's not related to ML
+
+1. If you don't have this destination, please download it from [here](files/webide_di) and save it on your disk
+
+1. Click on **Import Destination**, browse for the file you have just downloaded and import it  
+	![](images/17_3.png)
+
+1. Replace the account in the destination URL with your account and click **Save**  
+	![](images/17_4.png)
+
+1. Once you have imported it you should have only this destination in your system  
+	![](images/17_5.png)
+
+	>NOTE: If you see any other destination in your system please delete it
+
 1.	Click on **New Destination**  
 	![](images/18.png)
+
 1.	Enter the following information and click on the **New Property** button   
 
 	|Parameter|Value|
@@ -136,6 +161,7 @@ In this exercise you will learn how to quickly integrate the Image and Product I
 
 1. Add the property **WebIDEEnabled = true** to the destination and click **Save**
 	![](images/20.png)
+
 1.	You can use the **Check Connection** button to validate that the URL can be accessed. The response should be `Connection to "sapui5ml-api" established. Response returned: "404: Not Found"`  
 	![](images/21.png)
 

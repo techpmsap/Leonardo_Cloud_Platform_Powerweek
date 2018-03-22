@@ -87,6 +87,10 @@ In this section, you will take a prepared tensorflow model and upload it to the 
 	 
 1. While the file is getting uploaded to the server you will get a small progress bar on the right side at the bottom of the screen  
 	![](images/05.png)
+
+1. At the end of the process, which could also take a few minutes, you should get a **Response Code** of **201**
+	![](images/05_2.png)
+
 1.	In the Response Body you should get an answer like the one in the screenshot where you can see that the **modelStatus** is still **INACTIVE**. We will now deploy the model to the ML Foundation model repository. Note down the **modelName** and the **version**, because you will need it in the next steps  
 	![](images/06.png)
 	 

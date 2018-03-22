@@ -43,8 +43,8 @@ Here below are prerequisites for this exercise.
 * You must have completed previous exercises
 * MLFSAPUI5\_Project\_Exercises.zip (already imported in SAP Web IDE Full-Stack)
 * The [mnist.zip](files/mnist.zip)
-* A folder with the unzipped inference app [inference_app.zip](files/inference_app.zip)
-* A folder with the unzipped test image files [test_images.zip](files/test_images.zip)
+* A folder with the unzipped inference app [inference\_app.zip](files/inference_app.zip)
+* A folder with the unzipped test image files [test\_images\_byom.zip](files/test_images_byom.zip)
 
 |Parameter   |Value                                                |
 |------------|-----------------------------------------------------|
@@ -66,7 +66,7 @@ Here below are prerequisites for this exercise.
 ### <a name="upload-deploy-model"></a> Upload and deploy your model
 In this section, you will take a prepared tensorflow model and upload it to the ML Foundation model repository. After uploading, you will deploy it which will take a few minutes as the docker containers are instantiated for this model.
 	
-1.	Navigate in the SCP Cloud Foundry Cockpit to your Service Key. Select the Model Repo URL and copy it  
+1.	Navigate in the SCP Cloud Foundry Cockpit to your **Service Key**. Select the **Model Repo URL** and copy it  
 	![](images/01.png)
 1.	Open a new browser window and paste the copied URL. A Swagger UI is opened up  
 	![](images/02.png)
@@ -216,7 +216,7 @@ To test your new model. We prepared a SAPUI5 app that will point to your inferen
 	![](images/23.png)
 1. Copy and paste the routes URL from the terminal window into the Inference URL textbox by prefixing this URL with "https://"; thenk click **Browse**
 	![](images/24.png)
-1. Select an image from the folder *test_images* folder you have already downloaded as explained in the prerequisites
+1. Select an image from the folder *test\_images\_byom* folder you have already downloaded as explained in the prerequisites
 	![](images/25.png)
 
 1.	Click on **Analyze!** to test your model. 
